@@ -2,6 +2,7 @@ import logging
 import sys
 
 from .config import DATA_DIR, load_settings
+from .filters import job_matches_filters
 from .models import JobPosting
 from .notifier import send_email
 from .scrapers import SCRAPERS
@@ -13,13 +14,6 @@ logging.basicConfig(
     stream=sys.stdout,
 )
 logger = logging.getLogger(__name__)
-
-
-def matches_keywords(job: JobPosting, keywords: list[str]) -> bool:
-    if not keywords:
-        return True
-    haystack = f"{job.title} {job.location}".lower()
-    return any(keyword in haystack for keyword in keywords)
 
 
 def fetch_all_jobs(settings: dict) -> list[JobPosting]:
@@ -59,11 +53,12 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
 
     try:
         fetched = fetch_all_jobs(settings)
-        new_jobs = [
-            job
-            for job in fetched
-            if store.is_new(job) and matches_keywords(job, settings["keywords"])
-        ]
+        matching = [job for job in fetched if job_matches_filters(job, settings)]
+        logger.info(
+            "Matched %d job(s) after US / role / posting-time filters.",
+            len(matching),
+        )
+        new_jobs = [job for job in matching if store.is_new(job)]
 
         if not new_jobs:
             logger.info("No new job postings found.")
@@ -77,10 +72,10 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
             return 0
 
         if seed:
-            for job in fetched:
+            for job in matching:
                 store.mark_seen(job)
             logger.info(
-                "Seeded database with %d job(s); no email sent.", len(fetched)
+                "Seeded database with %d job(s); no email sent.", len(matching)
             )
             return 0
 

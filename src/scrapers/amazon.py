@@ -33,15 +33,19 @@ def fetch_amazon(company: str, source: dict, settings: dict) -> list[JobPosting]
             break
 
         for item in batch:
+            if item.get("country_code", "").upper() not in ("US", "USA", ""):
+                if item.get("country_code"):
+                    continue
             job_path = item.get("job_path", "")
+            location = item.get("normalized_location", item.get("city", ""))
             jobs.append(
                 JobPosting(
                     company=company,
                     title=item.get("title", "Untitled"),
                     url=f"https://www.amazon.jobs{job_path}",
                     source="amazon:jobs",
-                    location=item.get("normalized_location", item.get("city", "")),
-                    posted_at=item.get("posted_date", ""),
+                    location=location,
+                    posted_at=item.get("updated_time", item.get("posted_date", "")),
                 )
             )
 

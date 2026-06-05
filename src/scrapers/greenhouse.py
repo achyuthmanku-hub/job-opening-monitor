@@ -23,7 +23,7 @@ def fetch_greenhouse(company: str, source: dict, settings: dict) -> list[JobPost
                 url=item.get("absolute_url", ""),
                 source=f"greenhouse:{slug}",
                 location=item.get("location", {}).get("name", ""),
-                posted_at=item.get("updated_at", ""),
+                posted_at=item.get("first_published", item.get("updated_at", "")),
             )
         )
     return jobs

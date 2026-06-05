@@ -22,8 +22,13 @@ def load_settings() -> dict:
     config = load_yaml(ROOT / "config.yaml")
     companies = load_yaml(ROOT / "companies.yaml")
 
+    filters = config.get("filters", {})
+
     return {
         "keywords": [k.lower() for k in config.get("keywords", [])],
+        "us_only": filters.get("us_only", True),
+        "posted_min_hours": float(filters.get("posted_min_hours", 1)),
+        "posted_max_hours": float(filters.get("posted_max_hours", 5)),
         "request_timeout": config.get("request_timeout", 30),
         "user_agent": config.get(
             "user_agent", "JobOpeningMonitor/1.0 (+personal job alert bot)"

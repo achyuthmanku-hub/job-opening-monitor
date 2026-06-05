@@ -1,14 +1,14 @@
-# Copy to config.yaml and customize.
+# How often to check — hourly is required for the 1-5 hour posting window.
+schedule: "0 * * * *"
 
-# How often to check (used by launchd installer; cron expression for reference)
-schedule: "0 9,17 * * *"  # 9am and 5pm daily
-
-# Only notify for jobs whose title/location contains any of these (case-insensitive).
+# Role filter — matches job title only (case-insensitive).
 keywords:
   - "software engineer"
 
-# Request timeout in seconds
-request_timeout: 30
+filters:
+  us_only: true
+  posted_min_hours: 1
+  posted_max_hours: 5
 
-# User-agent sent with HTTP requests
+request_timeout: 30
 user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"

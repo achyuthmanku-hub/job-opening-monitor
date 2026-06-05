@@ -78,17 +78,21 @@ SMTP_PASSWORD=your-16-char-app-password
 NOTIFY_EMAIL=you@gmail.com
 ```
 
-## Keyword filtering
-
-In `config.yaml`, optionally filter to specific roles:
+## Filters (`config.yaml`)
 
 ```yaml
 keywords:
-  - "software engineer"
-  - "machine learning"
+  - "software engineer"   # title must contain this
+
+filters:
+  us_only: true          # United States only
+  posted_min_hours: 1    # posted at least 1 hour ago
+  posted_max_hours: 5    # posted at most 5 hours ago
 ```
 
-Leave `keywords: []` to get notified about every new posting.
+The scheduler runs **every hour** so the 1–5 hour window is checked reliably.
+
+Jobs without a precise posting timestamp (some career portals / LinkedIn) are skipped.
 
 ## How it works
 
