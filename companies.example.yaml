@@ -1,0 +1,42 @@
+# Copy to companies.yaml and customize.
+#
+# Each company can have multiple sources. The monitor checks all of them
+# and emails you when a new job appears that it hasn't seen before.
+#
+# Supported source types:
+#   greenhouse      - Greenhouse ATS (slug from boards.greenhouse.io/{slug})
+#   lever           - Lever ATS (slug from jobs.lever.co/{slug})
+#   ashby           - Ashby ATS (slug from jobs.ashbyhq.com/{slug})
+#   workday         - Workday ATS (tenant, wd, site)
+#   oracle          - Oracle HCM careers (host, site)
+#   amazon          - Amazon Jobs API (optional query filter)
+#   smartrecruiters - SmartRecruiters API (slug)
+#   career_portal   - Any careers page URL (generic HTML parsing)
+#   linkedin        - LinkedIn company jobs page URL
+#   indeed          - Indeed company jobs page URL
+#   glassdoor       - Glassdoor company jobs page URL
+
+companies:
+  - name: Stripe
+    sources:
+      - type: greenhouse
+        slug: stripe
+      - type: linkedin
+        url: https://www.linkedin.com/company/stripe/jobs
+
+  - name: JPMorgan Chase
+    sources:
+      - type: oracle
+        host: jpmc.fa.oraclecloud.com
+        site: CX_1001
+      - type: linkedin
+        url: https://www.linkedin.com/company/jpmorganchase/jobs
+
+  - name: Bank of America
+    sources:
+      - type: workday
+        tenant: ghr
+        wd: wd1
+        site: lateral-us
+      - type: linkedin
+        url: https://www.linkedin.com/company/bank-of-america/jobs
