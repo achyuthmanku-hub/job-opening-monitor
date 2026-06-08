@@ -50,7 +50,8 @@ def matches_role(job: JobPosting, keywords: list[str]) -> bool:
 
 
 def is_us_location(job: JobPosting) -> bool:
-    location = (job.location or "").strip()
+    # Some career portals (e.g. Expedia) put location in the title, not location field.
+    location = f"{job.location or ''} {job.title or ''}".strip()
     if not location:
         return False
 
@@ -132,11 +133,13 @@ def matches_posted_window(
     min_hours: float,
     max_hours: float,
     now: Optional[datetime] = None,
+    *,
+    allow_missing_posted_time: bool = False,
 ) -> bool:
     now = now or datetime.now(timezone.utc)
     hours = _hours_since_posted(job.posted_at, now)
     if hours is None:
-        return False
+        return allow_missing_posted_time
     return min_hours <= hours <= max_hours
 
 
@@ -150,4 +153,5 @@ def job_matches_filters(job: JobPosting, settings: dict, now: Optional[datetime]
         settings.get("posted_min_hours", 1),
         settings.get("posted_max_hours", 5),
         now=now,
+        allow_missing_posted_time=settings.get("allow_missing_posted_time", False),
     )

@@ -29,6 +29,7 @@ def load_settings() -> dict:
         "us_only": filters.get("us_only", True),
         "posted_min_hours": float(filters.get("posted_min_hours", 1)),
         "posted_max_hours": float(filters.get("posted_max_hours", 5)),
+        "allow_missing_posted_time": filters.get("allow_missing_posted_time", True),
         "request_timeout": config.get("request_timeout", 30),
         "user_agent": config.get(
             "user_agent", "JobOpeningMonitor/1.0 (+personal job alert bot)"
