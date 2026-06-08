@@ -8,7 +8,7 @@ keywords:
 filters:
   us_only: true
   posted_min_hours: 1
-  posted_max_hours: 5
+  posted_max_hours: 25
 
 request_timeout: 30
 user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"
