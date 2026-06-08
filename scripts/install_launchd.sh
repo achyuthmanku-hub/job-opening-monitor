@@ -23,6 +23,8 @@ cat > "$PLIST_PATH" <<EOF
     </array>
     <key>WorkingDirectory</key>
     <string>${PROJECT_DIR}</string>
+    <key>RunAtLoad</key>
+    <true/>
     <key>StartInterval</key>
     <integer>${INTERVAL_SECONDS}</integer>
     <key>StandardOutPath</key>

@@ -50,6 +50,7 @@ def fetch_all_jobs(settings: dict) -> list[JobPosting]:
 def run(dry_run: bool = False, seed: bool = False) -> int:
     settings = load_settings()
     store = JobStore(DATA_DIR / "seen_jobs.db")
+    logger.info("Job monitor started.")
 
     try:
         fetched = fetch_all_jobs(settings)

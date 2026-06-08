@@ -11,6 +11,7 @@ filters:
   us_only: true
   posted_min_hours: 1
   posted_max_hours: 25
+  allow_missing_posted_time: true   # needed for career portals like Expedia (no post date)
 
 request_timeout: 30
-user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"
+user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
