@@ -4,6 +4,8 @@ schedule: "0 * * * *"
 # Role filter — matches job title only (case-insensitive).
 keywords:
   - "software engineer"
+  - "back End engineer"
+  - "java developer"
 
 filters:
   us_only: true
