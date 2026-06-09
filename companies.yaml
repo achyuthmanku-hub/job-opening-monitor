@@ -347,8 +347,17 @@ companies:
         query: software engineer
       - type: linkedin
         url: https://www.linkedin.com/company/geico/jobs
+  - name: Expedia Group
+  sources:
+    - type: career_portal          # no post date — first-discovery alert
+      url: https://careers.expediagroup.com/jobs/?keyword=software%20engineer
+- name: Stripe
+  sources:
+    - type: greenhouse             # has post date — strict 1–25h window
+      slug: stripe
 
   - name: Great American Insurance Group
     sources:
       - type: career_portal
         url: https://www.greatamericaninsurancegroup.com/careers
+        
