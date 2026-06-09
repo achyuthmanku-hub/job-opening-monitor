@@ -11,6 +11,7 @@ filters:
   us_only: true              # United States locations only
   posted_min_hours: 1        # At least 1 hour ago
   posted_max_hours: 5        # At most 5 hours ago
+  allow_missing_posted_time: true
 
 request_timeout: 30
 user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"
