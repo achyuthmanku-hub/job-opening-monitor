@@ -10,7 +10,7 @@ keywords:
 filters:
   us_only: true
   posted_min_hours: 1
-  posted_max_hours: 25
+  posted_max_hours: 48
   allow_missing_posted_time: true   # needed for career portals like Expedia (no post date)
 
 request_timeout: 30
