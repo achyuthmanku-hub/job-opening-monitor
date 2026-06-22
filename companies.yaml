@@ -47,8 +47,11 @@ companies:
 
   - name: Nvidia
     sources:
-      - type: career_portal
-        url: https://nvidia.wd5.myworkdayjobs.com/NVIDIAExternalCareerSite
+      - type: workday
+        tenant: nvidia
+        wd: wd5
+        site: NVIDIAExternalCareerSite
+        query: software engineer
       - type: linkedin
         url: https://www.linkedin.com/company/nvidia/jobs
 
@@ -278,8 +281,11 @@ companies:
 
   - name: Fidelity Investments
     sources:
-      - type: career_portal
-        url: https://jobs.fidelity.com/en/jobs/?search=software%20engineer
+      - type: workday
+        tenant: fmr
+        wd: wd1
+        site: FidelityCareers
+        query: software engineer
       - type: linkedin
         url: https://www.linkedin.com/company/fidelity-investments/jobs
 
@@ -292,8 +298,6 @@ companies:
 
   - name: American Express
     sources:
-      - type: career_portal
-        url: https://www.americanexpress.com/en-us/careers/
       - type: linkedin
         url: https://www.linkedin.com/company/american-express/jobs
 
@@ -309,8 +313,11 @@ companies:
 
   - name: PayPal
     sources:
-      - type: career_portal
-        url: https://careers.pypl.com/home/search-results?keyword=software%20engineer
+      - type: workday
+        tenant: paypal
+        wd: wd1
+        site: jobs
+        query: software engineer
       - type: linkedin
         url: https://www.linkedin.com/company/paypal/jobs
 
