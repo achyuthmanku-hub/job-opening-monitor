@@ -1,8 +1,17 @@
 .env
 .env.save
 data/*.db
+data/job_platform.db
 data/*.json
 data/*.log
+data/applications/
+data/browser_profile/
+data/resumes/
+data/resume/
+data/apply_agent_last_run.txt
+application_profile.yaml
+apply_profile.yaml
+.DS_Store
 __pycache__/
 *.pyc
 .venv/

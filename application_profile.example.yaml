@@ -1,0 +1,55 @@
+# Application profile for auto-fill and resume tailoring.
+# Copy to application_profile.yaml and customize.
+
+legal_name:
+  first_name: Achyuth
+  last_name: Reddy Manku
+
+email: achyuthmanku@gmail.com
+phone: "5137998391"
+
+address:
+  street: "1405 Tarzan Drive"
+  city: Forney
+  state: TX
+  zip: "75126"
+  country: United States
+
+# Add your LinkedIn profile URL (required for some ATS forms).
+linkedin_url: ""
+
+# You do not need visa sponsorship — skip only clearance roles.
+needs_sponsorship: false
+
+experience:
+  - company: Citibank
+    title: Software Engineer
+    location: United States
+    start: "2024-11"
+    end: present
+  - company: Capital One
+    title: Software Engineer
+    location: United States
+    start: "2023-12"
+    end: "2024-11"
+  - company: HSBC
+    title: Java Backend Engineer
+    location: United States
+    start: "2020-09"
+    end: "2022-08"
+
+education:
+  - school: University of Cincinnati
+    degree: Master of Science, Information Technology
+    location: Cincinnati, OH
+    start: "2022-08"
+    end: "2023-05"
+  - school: Jawaharlal Nehru Technological University Hyderabad (JNTUH)
+    degree: Bachelor of Technology, Computer Science
+    location: Hyderabad, India
+    start: "2017-08"
+    end: "2021-05"
+
+certifications:
+  - AWS Prompt Engineering
+  - Google AI Professional Certificate
