@@ -1,0 +1,121 @@
+java:
+  - java
+  - jvm
+  - spring boot
+  - spring
+  - springboot
+  - hibernate
+python:
+  - python
+  - django
+  - flask
+  - fastapi
+javascript:
+  - javascript
+  - typescript
+  - node.js
+  - nodejs
+  - react
+  - angular
+  - vue
+aws:
+  - aws
+  - amazon web services
+  - ec2
+  - s3
+  - lambda
+  - dynamodb
+kubernetes:
+  - kubernetes
+  - k8s
+docker:
+  - docker
+  - containers
+sql:
+  - sql
+  - postgres
+  - postgresql
+  - mysql
+  - oracle db
+go:
+  - golang
+  - go
+microservices:
+  - microservices
+  - microservice
+rest:
+  - rest api
+  - restful
+  - rest
+kafka:
+  - kafka
+  - apache kafka
+redis:
+  - redis
+graphql:
+  - graphql
+ml:
+  - machine learning
+  - ml
+  - deep learning
+ai:
+  - artificial intelligence
+  - ai
+  - llm
+  - generative ai
+fraud:
+  - fraud detection
+  - fraud
+security:
+  - oauth
+  - jwt
+  - rbac
+  - security
+cicd:
+  - ci/cd
+  - jenkins
+  - github actions
+terraform:
+  - terraform
+  - infrastructure as code
+spark:
+  - apache spark
+  - spark
+hadoop:
+  - hadoop
+csharp:
+  - c#
+  - .net
+  - dotnet
+cpp:
+  - c++
+  - cpp
+rust:
+  - rust
+kotlin:
+  - kotlin
+swift:
+  - swift
+ios:
+  - ios
+android:
+  - android
+scala:
+  - scala
+ruby:
+  - ruby
+  - rails
+php:
+  - php
+elasticsearch:
+  - elasticsearch
+  - elastic search
+mongodb:
+  - mongodb
+  - mongo
+grafana:
+  - grafana
+splunk:
+  - splunk
+datadog:
+  - datadog

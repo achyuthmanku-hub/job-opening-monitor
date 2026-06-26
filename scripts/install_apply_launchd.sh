@@ -3,10 +3,10 @@ set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 PYTHON_BIN="${PYTHON_BIN:-$PROJECT_DIR/.venv/bin/python}"
-PLIST_NAME="com.jobopeningmonitor.agent"
+PLIST_NAME="com.jobopeningmonitor.apply"
 PLIST_PATH="$HOME/Library/LaunchAgents/${PLIST_NAME}.plist"
 
-# Runs every hour — catches new jobs as they are posted (posting window filter).
+# Runs every hour; Python agent only executes during 8:00 AM CST window.
 INTERVAL_SECONDS="${1:-3600}"
 
 cat > "$PLIST_PATH" <<EOF
@@ -19,18 +19,18 @@ cat > "$PLIST_PATH" <<EOF
     <key>ProgramArguments</key>
     <array>
         <string>${PYTHON_BIN}</string>
-        <string>${PROJECT_DIR}/run.py</string>
+        <string>${PROJECT_DIR}/run_apply.py</string>
     </array>
     <key>WorkingDirectory</key>
     <string>${PROJECT_DIR}</string>
     <key>RunAtLoad</key>
-    <true/>
+    <false/>
     <key>StartInterval</key>
     <integer>${INTERVAL_SECONDS}</integer>
     <key>StandardOutPath</key>
-    <string>${PROJECT_DIR}/data/monitor.log</string>
+    <string>${PROJECT_DIR}/data/apply_agent.log</string>
     <key>StandardErrorPath</key>
-    <string>${PROJECT_DIR}/data/monitor.error.log</string>
+    <string>${PROJECT_DIR}/data/apply_agent.error.log</string>
 </dict>
 </plist>
 EOF
@@ -38,6 +38,6 @@ EOF
 launchctl unload "$PLIST_PATH" 2>/dev/null || true
 launchctl load "$PLIST_PATH"
 
-echo "Installed launchd agent: $PLIST_PATH"
-echo "Runs every $((INTERVAL_SECONDS / 60)) minutes for new job posting alerts."
-echo "Logs: ${PROJECT_DIR}/data/monitor.log"
+echo "Installed apply launchd agent: $PLIST_PATH"
+echo "Checks hourly; runs apply logic once daily at 8:00 AM CST."
+echo "Logs: ${PROJECT_DIR}/data/apply_agent.log"

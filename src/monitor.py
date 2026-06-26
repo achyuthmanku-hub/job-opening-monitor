@@ -51,13 +51,26 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
     settings = load_settings()
     store = JobStore(DATA_DIR / "seen_jobs.db")
     logger.info("Job monitor started.")
+    exp_max = int(settings.get("experience_max_years", 5))
+    if settings.get("experience_filter_enabled", True):
+        logger.info(
+            "Experience filter active: %d–%d years (skips senior / higher-experience roles).",
+            int(settings.get("experience_min_years", 0)),
+            exp_max,
+        )
 
     try:
         fetched = fetch_all_jobs(settings)
+        logger.info("Fetched %d total job posting(s) from all sources.", len(fetched))
+
         matching = [job for job in fetched if job_matches_filters(job, settings)]
+        excluded = len(fetched) - len(matching)
         logger.info(
-            "Matched %d job(s) after US / role / posting-time filters.",
+            "Matched %d job(s) after US / role / posting-time / experience (0-%d yrs) filters "
+            "(%d excluded).",
             len(matching),
+            exp_max,
+            excluded,
         )
         new_jobs = [job for job in matching if store.is_new(job)]
 
