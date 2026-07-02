@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Settings — Job Intelligence{% endblock %}
+{% block content %}
+<h1>Settings</h1>
+<p class="muted">Alert channels, global filters, and RAG alert thresholds.</p>
+
+<div class="card" style="margin:1rem 0;">
+  <h3>Alert config (<code>config.yaml</code>)</h3>
+  <ul class="muted">
+    <li>Profile ID for match scores: <strong>{{ alerts.get('profile_id', '—') }}</strong></li>
+    <li>Min match score: <strong>{{ alerts.get('min_match_score', 70) }}%</strong></li>
+    <li>Channels: email={{ alerts.get('channels', {}).get('email', true) }},
+      slack={{ alerts.get('channels', {}).get('slack', false) }},
+      discord={{ alerts.get('channels', {}).get('discord', false) }}</li>
+  </ul>
+  <p class="muted">Set webhook URLs in <code>.env</code>: SLACK_WEBHOOK_URL, DISCORD_WEBHOOK_URL, TELEGRAM_BOT_TOKEN.</p>
+</div>
+
+{% if user %}
+<div class="card">
+  <h3>User preferences ({{ user.email }})</h3>
+  <ul>
+    <li>Countries: {{ preferences.countries | join(', ') }}</li>
+    <li>Work authorization: {{ preferences.work_authorization }}</li>
+    <li>Skip clearance roles: {{ preferences.skip_clearance }}</li>
+    <li>Min match score: {{ preferences.min_match_score }}%</li>
+    <li>Alert channels: email={{ preferences.alert_channels.email }},
+      slack={{ preferences.alert_channels.slack }},
+      discord={{ preferences.alert_channels.discord }},
+      telegram={{ preferences.alert_channels.telegram }}</li>
+  </ul>
+  <p class="muted">Update via <code>PATCH /auth/me/preferences</code> or bootstrap with <code>scripts/bootstrap_user.py</code>.</p>
+</div>
+{% else %}
+<div class="card">
+  <p class="muted">No user yet. Run <code>python scripts/bootstrap_user.py --email you@example.com --name "You"</code></p>
+</div>
+{% endif %}
+
+{% if auth_enabled %}
+<p class="muted">API auth is <strong>enabled</strong>. Pass <code>X-API-Key</code> on write endpoints.</p>
+{% else %}
+<p class="muted">API auth is <strong>disabled</strong> (local dev). Set <code>API_AUTH_ENABLED=true</code> for production.</p>
+{% endif %}
+{% endblock %}

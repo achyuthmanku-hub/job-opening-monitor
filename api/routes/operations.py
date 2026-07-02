@@ -1,11 +1,13 @@
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
+from api.deps.auth import require_user
 from api.schemas.jobs import AlertResponse, ParseResponse
 from api.services.alerts import run_alerts
 from api.services.nlp_pipeline import parse_jobs
 from src.config import load_settings
 from src.db import get_db
+from src.db.models import User
 
 router = APIRouter(tags=["operations"])
 
@@ -14,9 +16,12 @@ router = APIRouter(tags=["operations"])
 def trigger_alerts(
     dry_run: bool = Query(default=False),
     db: Session = Depends(get_db),
+    user: User = Depends(require_user),
 ) -> AlertResponse:
     settings = load_settings()
-    result = run_alerts(db, settings, dry_run=dry_run)
+    result = run_alerts(db, settings, dry_run=dry_run, user=user)
+    if "emailed" not in result:
+        result["emailed"] = result.get("channels", {}).get("email", result.get("notified", 0))
     return AlertResponse(**result)
 
 

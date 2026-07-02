@@ -19,6 +19,22 @@ filters:
 request_timeout: 30
 user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"
 
+rate_limit:
+  requests_per_second: 1.0
+  max_retries: 3
+  backoff_seconds: 1.5
+
+# Phase 5 — smart alerts with optional RAG match scores
+alerts:
+  profile_id: 1
+  min_match_score: 70
+  include_match_scores: true
+  channels:
+    email: true
+    slack: false
+    discord: false
+    telegram: false
+
 apply_agent:
   enabled: true
   min_match_score: 85

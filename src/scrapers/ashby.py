@@ -1,6 +1,5 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_post
 
 
 def fetch_ashby(company: str, source: dict, settings: dict) -> list[JobPosting]:
@@ -23,16 +22,12 @@ def fetch_ashby(company: str, source: dict, settings: dict) -> list[JobPosting]:
         }
         """,
     }
-    response = requests.post(
+    response = http_post(
         url,
+        settings,
         json=payload,
-        timeout=settings["request_timeout"],
-        headers={
-            "User-Agent": settings["user_agent"],
-            "Content-Type": "application/json",
-        },
+        headers={"Content-Type": "application/json"},
     )
-    response.raise_for_status()
     data = response.json()
     postings = (
         data.get("data", {}).get("jobBoard", {}).get("jobPostings", []) or []

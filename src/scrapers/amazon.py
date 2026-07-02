@@ -1,6 +1,5 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_get
 
 
 def _search_query(settings: dict) -> str:
@@ -16,17 +15,15 @@ def fetch_amazon(company: str, source: dict, settings: dict) -> list[JobPosting]
     page_size = 100
 
     while len(jobs) < max_jobs:
-        response = requests.get(
+        response = http_get(
             "https://www.amazon.jobs/en/search.json",
+            settings,
             params={
                 "base_query": base_query,
                 "offset": offset,
                 "result_limit": page_size,
             },
-            timeout=settings["request_timeout"],
-            headers={"User-Agent": settings["user_agent"]},
         )
-        response.raise_for_status()
         payload = response.json()
         batch = payload.get("jobs", [])
         if not batch:

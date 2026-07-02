@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — Job Intelligence{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<p class="muted">Phase 4 platform overview — scan, NLP, RAG matches, and alerts.</p>
+
+<div class="grid" style="margin:1.5rem 0;">
+  <div class="card"><div class="stat">{{ job_count }}</div><div class="muted">Jobs tracked</div></div>
+  <div class="card"><div class="stat">{{ company_count }}</div><div class="muted">Companies</div></div>
+  <div class="card"><div class="stat">{{ profile_count }}</div><div class="muted">Profiles</div></div>
+  <div class="card"><div class="stat">{{ match_count }}</div><div class="muted">Stored matches</div></div>
+</div>
+
+<h2>Top matches</h2>
+{% if matches %}
+<table>
+  <thead><tr><th>Score</th><th>Role</th><th>Summary</th></tr></thead>
+  <tbody>
+  {% for m in matches %}
+    <tr>
+      <td class="score">{{ m.score }}%</td>
+      <td><a href="{{ m.url }}" target="_blank">{{ m.company }} — {{ m.title }}</a></td>
+      <td class="muted">{{ m.summary }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No matches yet. Run <code>POST /jobs/embed</code> and <code>GET /profiles/1/matches?refresh=true</code>.</p>
+{% endif %}
+{% endblock %}

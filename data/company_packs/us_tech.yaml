@@ -1,0 +1,78 @@
+pack: us_tech
+description: US tech companies on major ATS platforms (starter pack)
+
+companies:
+  - name: Stripe
+    sources:
+      - type: greenhouse
+        slug: stripe
+
+  - name: Notion
+    sources:
+      - type: ashby
+        slug: notion
+
+  - name: Linear
+    sources:
+      - type: ashby
+        slug: linear
+
+  - name: Figma
+    sources:
+      - type: greenhouse
+        slug: figma
+
+  - name: Discord
+    sources:
+      - type: greenhouse
+        slug: discord
+
+  - name: Datadog
+    sources:
+      - type: greenhouse
+        slug: datadog
+
+  - name: Cloudflare
+    sources:
+      - type: greenhouse
+        slug: cloudflare
+
+  - name: Ramp
+    sources:
+      - type: ashby
+        slug: ramp
+
+  - name: Plaid
+    sources:
+      - type: lever
+        slug: plaid
+
+  - name: Brex
+    sources:
+      - type: greenhouse
+        slug: brex
+
+  - name: Robinhood
+    sources:
+      - type: greenhouse
+        slug: robinhood
+
+  - name: Coinbase
+    sources:
+      - type: greenhouse
+        slug: coinbase
+
+  - name: Databricks
+    sources:
+      - type: greenhouse
+        slug: databricks
+
+  - name: Snowflake
+    sources:
+      - type: greenhouse
+        slug: snowflake
+
+  - name: MongoDB
+    sources:
+      - type: greenhouse
+        slug: mongodb

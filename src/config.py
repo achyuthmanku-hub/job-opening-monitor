@@ -53,7 +53,9 @@ def load_settings() -> dict:
         "user_agent": config.get(
             "user_agent", "JobOpeningMonitor/1.0 (+personal job alert bot)"
         ),
+        "rate_limit": config.get("rate_limit", {}),
         "companies": companies.get("companies", []),
+        "alerts": config.get("alerts", {}),
         "apply_agent": {
             "enabled": apply_cfg.get("enabled", True),
             "min_match_score": float(apply_cfg.get("min_match_score", 85)),
@@ -94,4 +96,6 @@ def load_settings() -> dict:
             "password": os.getenv("SMTP_PASSWORD", "").replace(" ", "").strip(),
             "notify_email": os.getenv("NOTIFY_EMAIL", "").strip(),
         },
+        "api_auth_enabled": os.getenv("API_AUTH_ENABLED", "false").strip().lower()
+        in ("1", "true", "yes"),
     }

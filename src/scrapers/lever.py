@@ -1,17 +1,11 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_get
 
 
 def fetch_lever(company: str, source: dict, settings: dict) -> list[JobPosting]:
     slug = source["slug"]
     url = f"https://api.lever.co/v0/postings/{slug}?mode=json"
-    response = requests.get(
-        url,
-        timeout=settings["request_timeout"],
-        headers={"User-Agent": settings["user_agent"]},
-    )
-    response.raise_for_status()
+    response = http_get(url, settings)
     postings = response.json()
 
     jobs: list[JobPosting] = []

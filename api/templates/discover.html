@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Discover — Job Intelligence{% endblock %}
+{% block content %}
+<h1>Discover company</h1>
+<p class="muted">Paste a careers URL — we detect Greenhouse, Ashby, Lever, Workday, and more.</p>
+
+{% if message %}
+<div class="card" style="border-color:#22c55e; margin:1rem 0;">{{ message }}</div>
+{% endif %}
+{% if error %}
+<div class="card" style="border-color:#ef4444; margin:1rem 0;">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/ui/discover" style="display:grid; gap:.75rem; max-width:640px; margin-top:1rem;">
+  <label>
+    <span class="muted">Careers URL</span><br>
+    <input name="url" type="url" required placeholder="https://stripe.com/jobs" style="width:100%; margin-top:.25rem;">
+  </label>
+  <label>
+    <span class="muted">Company name (optional)</span><br>
+    <input name="company_name" placeholder="Stripe" style="width:100%; margin-top:.25rem;">
+  </label>
+  <label><input type="checkbox" name="add_to_yaml" value="true" checked> Add to companies.yaml</label>
+  <button type="submit">Discover ATS</button>
+</form>
+{% endblock %}

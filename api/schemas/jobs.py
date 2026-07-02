@@ -71,9 +71,12 @@ class JobListResponse(BaseModel):
 
 class AlertResponse(BaseModel):
     new_jobs: int
-    emailed: int
+    notified: int = 0
+    emailed: int = 0
     dry_run: bool = False
     titles: list[str] = Field(default_factory=list)
+    channels: dict = Field(default_factory=dict)
+    filtered_by_match_score: bool = False
 
 
 class ParseResponse(BaseModel):

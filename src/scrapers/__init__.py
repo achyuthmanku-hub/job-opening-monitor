@@ -7,19 +7,22 @@ from .indeed import fetch_indeed
 from .lever import fetch_lever
 from .linkedin import fetch_linkedin
 from .oracle import fetch_oracle
+from .registry import SCRAPERS, load_plugins, register_scraper
 from .smartrecruiters import fetch_smartrecruiters
 from .workday import fetch_workday
 
-SCRAPERS = {
-    "greenhouse": fetch_greenhouse,
-    "lever": fetch_lever,
-    "ashby": fetch_ashby,
-    "workday": fetch_workday,
-    "oracle": fetch_oracle,
-    "amazon": fetch_amazon,
-    "smartrecruiters": fetch_smartrecruiters,
-    "career_portal": fetch_career_portal,
-    "linkedin": fetch_linkedin,
-    "indeed": fetch_indeed,
-    "glassdoor": fetch_glassdoor,
-}
+register_scraper("greenhouse", fetch_greenhouse)
+register_scraper("lever", fetch_lever)
+register_scraper("ashby", fetch_ashby)
+register_scraper("workday", fetch_workday)
+register_scraper("oracle", fetch_oracle)
+register_scraper("amazon", fetch_amazon)
+register_scraper("smartrecruiters", fetch_smartrecruiters)
+register_scraper("career_portal", fetch_career_portal)
+register_scraper("linkedin", fetch_linkedin)
+register_scraper("indeed", fetch_indeed)
+register_scraper("glassdoor", fetch_glassdoor)
+
+load_plugins()
+
+__all__ = ["SCRAPERS", "register_scraper", "load_plugins"]
