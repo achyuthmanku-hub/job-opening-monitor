@@ -12,6 +12,35 @@ filters:
   posted_min_hours: 1
   posted_max_hours: 25
   allow_missing_posted_time: true   # needed for career portals like Expedia (no post date)
+  experience_filter_enabled: true
+  experience_min_years: 0
+  # Max years required in posting (skips senior / 6+ year roles)
+  experience_max_years: 5
 
 request_timeout: 30
 user_agent: "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+# Auto-apply agent — runs daily at 8:00 AM America/Chicago.
+apply_agent:
+  enabled: false
+  min_match_score: 85
+  max_applications_per_day: 25
+  max_applications_per_company: 1
+  delay_between_applications_seconds: 90
+  delay_jitter_seconds: 45
+  timezone: America/Chicago
+  base_resume_path: data/resumes/base_resume.docx
+  skip_clearance: true
+  auto_submit: true
+  send_email: false
+  playwright_headless: false
+  playwright_slow_mo: 120
+  match_mode: auto
+  resume_mode: preserve
+  ats_priority:
+    - greenhouse
+    - ashby
+    - workday
+    - oracle
+    - amazon
+    - lever
