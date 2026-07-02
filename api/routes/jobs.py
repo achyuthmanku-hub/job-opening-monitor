@@ -3,6 +3,7 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
+from api.deps.auth import require_user
 from api.schemas.jobs import AlertResponse, JobListResponse, JobOut, ParseResponse, ScanRequest, ScanResponse
 from api.services.alerts import get_new_jobs, run_alerts
 from api.services.descriptions import enrich_descriptions
@@ -11,13 +12,17 @@ from api.services.job_queries import job_to_schema, query_jobs
 from api.services.nlp_pipeline import parse_jobs, parsed_skills
 from src.config import load_settings
 from src.db import get_db
-from src.db.models import Job
+from src.db.models import Job, User
 
 router = APIRouter(prefix="/jobs", tags=["jobs"])
 
 
 @router.post("/scan", response_model=ScanResponse)
-def scan_jobs(body: ScanRequest, db: Session = Depends(get_db)) -> ScanResponse:
+def scan_jobs(
+    body: ScanRequest,
+    db: Session = Depends(get_db),
+    user: User = Depends(require_user),
+) -> ScanResponse:
     settings = load_settings()
     summary = ingest_jobs(db, settings, store_all=body.store_all)
     descriptions_enriched = 0

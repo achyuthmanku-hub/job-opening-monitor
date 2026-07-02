@@ -4,7 +4,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
-from .models import JobPosting
+from ..models import JobPosting
 
 
 def send_email(jobs: list[JobPosting], smtp_config: dict) -> None:

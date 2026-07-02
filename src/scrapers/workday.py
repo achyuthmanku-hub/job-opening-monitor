@@ -1,6 +1,5 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_post
 
 
 def _search_query(settings: dict) -> str:
@@ -22,21 +21,17 @@ def fetch_workday(company: str, source: dict, settings: dict) -> list[JobPosting
     limit = 20
 
     while len(jobs) < max_jobs:
-        response = requests.post(
+        response = http_post(
             url,
+            settings,
             json={
                 "appliedFacets": {},
                 "limit": limit,
                 "offset": offset,
                 "searchText": search_text,
             },
-            timeout=settings["request_timeout"],
-            headers={
-                "User-Agent": settings["user_agent"],
-                "Content-Type": "application/json",
-            },
+            headers={"Content-Type": "application/json"},
         )
-        response.raise_for_status()
         payload = response.json()
         postings = payload.get("jobPostings", [])
         if not postings:

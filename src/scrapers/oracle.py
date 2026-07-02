@@ -1,6 +1,5 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_get
 
 
 def _search_query(settings: dict) -> str:
@@ -28,13 +27,11 @@ def fetch_oracle(company: str, source: dict, settings: dict) -> list[JobPosting]
             f"findReqs;siteNumber={site},keyword={keyword},limit={limit},"
             f"offset={offset},sortBy=POSTING_DATES_DESC"
         )
-        response = requests.get(
+        response = http_get(
             api_url,
+            settings,
             params={"finder": finder},
-            timeout=settings["request_timeout"],
-            headers={"User-Agent": settings["user_agent"]},
         )
-        response.raise_for_status()
         items = response.json().get("items", [])
         if not items:
             break

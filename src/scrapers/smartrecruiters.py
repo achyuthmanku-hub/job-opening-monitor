@@ -1,6 +1,5 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_get
 
 
 def fetch_smartrecruiters(company: str, source: dict, settings: dict) -> list[JobPosting]:
@@ -10,13 +9,11 @@ def fetch_smartrecruiters(company: str, source: dict, settings: dict) -> list[Jo
     limit = 100
 
     while True:
-        response = requests.get(
+        response = http_get(
             f"https://api.smartrecruiters.com/v1/companies/{slug}/postings",
+            settings,
             params={"offset": offset, "limit": limit},
-            timeout=settings["request_timeout"],
-            headers={"User-Agent": settings["user_agent"]},
         )
-        response.raise_for_status()
         payload = response.json()
         batch = payload.get("content", [])
         if not batch:

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Jobs — Job Intelligence{% endblock %}
+{% block content %}
+<h1>Jobs <span class="muted">({{ total }})</span></h1>
+<form method="get" style="display:flex; gap:.5rem; margin:1rem 0;">
+  <input name="keyword" placeholder="Keyword" value="{{ keyword }}">
+  <input name="company" placeholder="Company" value="{{ company }}">
+  <button type="submit">Filter</button>
+</form>
+<table>
+  <thead><tr><th>Company</th><th>Title</th><th>Location</th><th>Source</th></tr></thead>
+  <tbody>
+  {% for job in jobs %}
+    <tr>
+      <td>{{ job.company }}</td>
+      <td><a href="{{ job.url }}" target="_blank">{{ job.title }}</a></td>
+      <td class="muted">{{ job.location }}</td>
+      <td class="muted">{{ job.source }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

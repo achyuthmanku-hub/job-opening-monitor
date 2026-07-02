@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Matches — Job Intelligence{% endblock %}
+{% block content %}
+<h1>RAG Matches</h1>
+{% if profile %}
+<p class="muted">Profile: <strong>{{ profile.name }}</strong> (id {{ profile.id }}) — min score {{ min_score }}%</p>
+{% endif %}
+
+{% if matches %}
+<table>
+  <thead><tr><th>Score</th><th>Role</th><th>Fit</th><th>Gaps</th></tr></thead>
+  <tbody>
+  {% for m in matches %}
+    <tr>
+      <td class="score">{{ m.score }}%</td>
+      <td><a href="{{ m.url }}" target="_blank">{{ m.company }} — {{ m.title }}</a></td>
+      <td class="muted">{{ m.summary }}</td>
+      <td class="muted">{{ m.gaps | join(', ') }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p class="muted">No matches above {{ min_score }}%. Refresh via API: <code>/profiles/1/matches?refresh=true</code></p>
+{% endif %}
+{% endblock %}

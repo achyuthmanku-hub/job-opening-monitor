@@ -1,0 +1,64 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: job_monitor
+      POSTGRES_USER: jobmonitor
+      POSTGRES_PASSWORD: jobmonitor
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://jobmonitor:jobmonitor@postgres:5432/job_monitor
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./data:/app/data
+      - ./companies.yaml:/app/companies.yaml
+      - ./config.yaml:/app/config.yaml
+
+  worker:
+    build: .
+    command: celery -A api.celery_app worker -l info
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://jobmonitor:jobmonitor@postgres:5432/job_monitor
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    volumes:
+      - ./data:/app/data
+      - ./companies.yaml:/app/companies.yaml
+      - ./config.yaml:/app/config.yaml
+
+  beat:
+    build: .
+    command: celery -A api.celery_app beat -l info
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgresql://jobmonitor:jobmonitor@postgres:5432/job_monitor
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+      - worker
+
+volumes:
+  pgdata:

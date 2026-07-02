@@ -2,7 +2,7 @@ import re
 from datetime import datetime, timezone
 from typing import Optional
 
-from .models import JobPosting
+from ..models import JobPosting
 
 US_STATE_CODES = {
     "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL",

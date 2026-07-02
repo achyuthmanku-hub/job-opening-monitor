@@ -1,0 +1,33 @@
+pack: fintech
+description: Fintech companies on Greenhouse and Ashby
+
+companies:
+  - name: Chime
+    sources:
+      - type: greenhouse
+        slug: chime
+
+  - name: Affirm
+    sources:
+      - type: greenhouse
+        slug: affirm
+
+  - name: SoFi
+    sources:
+      - type: greenhouse
+        slug: sofi
+
+  - name: Mercury
+    sources:
+      - type: ashby
+        slug: mercury
+
+  - name: Wise
+    sources:
+      - type: greenhouse
+        slug: wise
+
+  - name: Klarna
+    sources:
+      - type: greenhouse
+        slug: klarna

@@ -1,17 +1,11 @@
-import requests
-
 from ..models import JobPosting
+from .rate_limit import http_get
 
 
 def fetch_greenhouse(company: str, source: dict, settings: dict) -> list[JobPosting]:
     slug = source["slug"]
     url = f"https://boards-api.greenhouse.io/v1/boards/{slug}/jobs?content=true"
-    response = requests.get(
-        url,
-        timeout=settings["request_timeout"],
-        headers={"User-Agent": settings["user_agent"]},
-    )
-    response.raise_for_status()
+    response = http_get(url, settings)
     payload = response.json()
 
     jobs: list[JobPosting] = []

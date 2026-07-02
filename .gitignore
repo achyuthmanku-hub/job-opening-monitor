@@ -1,7 +1,6 @@
 .env
 .env.save
 data/*.db
-data/job_platform.db
 data/*.json
 data/*.log
 data/applications/
@@ -11,6 +10,7 @@ data/resume/
 data/apply_agent_last_run.txt
 application_profile.yaml
 apply_profile.yaml
+celerybeat-schedule.db
 .DS_Store
 __pycache__/
 *.pyc

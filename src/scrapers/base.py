@@ -1,10 +1,10 @@
 import re
 from typing import Optional
 
-import requests
 from bs4 import BeautifulSoup
 
 from ..models import JobPosting
+from .rate_limit import http_get
 
 JOB_LINK_PATTERNS = re.compile(
     r"(job|career|position|opening|role|apply|posting|vacanc)",
@@ -13,12 +13,7 @@ JOB_LINK_PATTERNS = re.compile(
 
 
 def fetch_html(url: str, settings: dict) -> str:
-    response = requests.get(
-        url,
-        timeout=settings["request_timeout"],
-        headers={"User-Agent": settings["user_agent"]},
-    )
-    response.raise_for_status()
+    response = http_get(url, settings)
     return response.text
 
 
