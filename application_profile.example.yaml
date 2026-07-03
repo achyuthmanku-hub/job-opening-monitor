@@ -2,54 +2,49 @@
 # Copy to application_profile.yaml and customize.
 
 legal_name:
-  first_name: Achyuth
-  last_name: Reddy Manku
+  first_name: Jane
+  last_name: Doe
 
-email: achyuthmanku@gmail.com
-phone: "5137998391"
+email: jane.doe@example.com
+phone: "+1-555-555-5555"
 
 address:
-  street: "1405 Tarzan Drive"
-  city: Forney
+  street: "123 Main Street"
+  city: Austin
   state: TX
-  zip: "75126"
+  zip: "78701"
   country: United States
 
 # Add your LinkedIn profile URL (required for some ATS forms).
-linkedin_url: ""
+linkedin_url: "https://www.linkedin.com/in/yourprofile"
 
-# You do not need visa sponsorship — skip only clearance roles.
+# Set true only if you need visa sponsorship from the employer.
 needs_sponsorship: false
 
 experience:
-  - company: Citibank
+  - company: Example Corp
     title: Software Engineer
     location: United States
-    start: "2024-11"
+    start: "2023-01"
     end: present
-  - company: Capital One
-    title: Software Engineer
+  - company: Previous Co
+    title: Junior Software Engineer
     location: United States
-    start: "2023-12"
-    end: "2024-11"
-  - company: HSBC
-    title: Java Backend Engineer
-    location: United States
-    start: "2020-09"
-    end: "2022-08"
+    start: "2021-06"
+    end: "2022-12"
 
 education:
-  - school: University of Cincinnati
-    degree: Master of Science, Information Technology
-    location: Cincinnati, OH
-    start: "2022-08"
-    end: "2023-05"
-  - school: Jawaharlal Nehru Technological University Hyderabad (JNTUH)
+  - school: Example University
+    degree: Master of Science, Computer Science
+    location: City, ST
+    start: "2020-08"
+    end: "2022-05"
+  - school: Example College
     degree: Bachelor of Technology, Computer Science
-    location: Hyderabad, India
-    start: "2017-08"
-    end: "2021-05"
+    location: City, Country
+    start: "2016-08"
+    end: "2020-05"
 
 certifications:
-  - AWS Prompt Engineering
-  - Google AI Professional Certificate
+  - AWS Cloud Practitioner
+  - Example Professional Certificate

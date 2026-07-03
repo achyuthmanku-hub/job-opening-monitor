@@ -10,6 +10,8 @@ data/resume/
 data/apply_agent_last_run.txt
 application_profile.yaml
 apply_profile.yaml
+config.yaml
+companies.yaml
 celerybeat-schedule.db
 .DS_Store
 __pycache__/
