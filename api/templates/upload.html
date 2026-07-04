@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Upload resume — Job Intelligence{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>Find jobs that fit your resume</h1>
+  <p class="muted">
+    Upload a resume. We match it against our shared job pool from Fortune 500 and major tech companies
+    using semantic search (RAG) — no account required.
+  </p>
+</section>
+
+{% if error %}
+<div class="card" style="border-color:#ef4444; margin:1rem 0;">{{ error }}</div>
+{% endif %}
+
+<form method="post" action="/ui/upload" enctype="multipart/form-data" class="card" style="max-width:560px; display:grid; gap:1rem;">
+  <label>
+    <span class="muted">Your name</span><br>
+    <input name="name" required placeholder="Jane Doe" style="width:100%; margin-top:.35rem;">
+  </label>
+  <label>
+    <span class="muted">Resume (PDF, DOCX, or TXT — max 5 MB)</span><br>
+    <input name="resume" type="file" accept=".pdf,.docx,.txt,.md,application/pdf" required style="width:100%; margin-top:.35rem;">
+  </label>
+  <label>
+    <span class="muted">Minimum match score</span><br>
+    <select name="min_score" style="width:100%; margin-top:.35rem; background:#111827; color:var(--text); border:1px solid #374151; padding:.5rem; border-radius:8px;">
+      <option value="50">50% — more results</option>
+      <option value="60" selected>60% — balanced</option>
+      <option value="70">70% — stronger fits</option>
+      <option value="80">80% — top matches only</option>
+    </select>
+  </label>
+  <button type="submit" style="font-size:1rem; padding:.75rem 1rem;">Match me to jobs</button>
+  <p class="muted" style="margin:0;">
+    Matching uses vector similarity (fast). Jobs are shared across all users — upload only changes
+    <em>your</em> rankings, not the company list.
+  </p>
+</form>
+
+<div class="card" style="margin-top:1.5rem;">
+  <h3 style="margin-top:0;">How it works</h3>
+  <ol class="muted">
+    <li>We already scrape Fortune 500 / major employers into one job database.</li>
+    <li>Your resume is embedded and compared to every job description.</li>
+    <li>You get a ranked list with fit scores and links to apply.</li>
+  </ol>
+</div>
+{% endblock %}

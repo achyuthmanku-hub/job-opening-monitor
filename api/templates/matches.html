@@ -1,19 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Matches — Job Intelligence{% endblock %}
 {% block content %}
-<h1>RAG Matches</h1>
+<h1>Your job matches</h1>
+
 {% if profile %}
-<p class="muted">Profile: <strong>{{ profile.name }}</strong> (id {{ profile.id }}) — min score {{ min_score }}%</p>
+<p class="muted">
+  Profile: <strong>{{ profile.name }}</strong> (id {{ profile.id }}) —
+  showing scores ≥ {{ min_score }}%
+</p>
+{% else %}
+<p class="muted">No profile selected. <a href="/ui/upload">Upload a resume</a> to get matches.</p>
+{% endif %}
+
+{% if profiles %}
+<form method="get" action="/ui/matches" style="display:flex; gap:.5rem; flex-wrap:wrap; margin:1rem 0; align-items:center;">
+  <label class="muted">Switch profile
+    <select name="profile_id" onchange="this.form.submit()">
+      {% for p in profiles %}
+      <option value="{{ p.id }}" {% if p.id == profile_id %}selected{% endif %}>{{ p.name }} (#{{ p.id }})</option>
+      {% endfor %}
+    </select>
+  </label>
+  <input type="hidden" name="min_score" value="{{ min_score }}">
+  <a href="/ui/upload" class="btn-primary">Upload another resume</a>
+</form>
 {% endif %}
 
 {% if matches %}
 <table>
-  <thead><tr><th>Score</th><th>Role</th><th>Fit</th><th>Gaps</th></tr></thead>
+  <thead><tr><th>Score</th><th>Role</th><th>Why it fits</th><th>Gaps</th></tr></thead>
   <tbody>
   {% for m in matches %}
     <tr>
       <td class="score">{{ m.score }}%</td>
-      <td><a href="{{ m.url }}" target="_blank">{{ m.company }} — {{ m.title }}</a></td>
+      <td><a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.company }} — {{ m.title }}</a></td>
       <td class="muted">{{ m.summary }}</td>
       <td class="muted">{{ m.gaps | join(', ') }}</td>
     </tr>
@@ -21,6 +41,10 @@
   </tbody>
 </table>
 {% else %}
-<p class="muted">No matches above {{ min_score }}%. Refresh via API: <code>/profiles/1/matches?refresh=true</code></p>
+<p class="muted">
+  No matches above {{ min_score }}%.
+  {% if profile %}Try a lower score, or ask the operator to run a job scan / embed.{% endif %}
+  <a href="/ui/upload">Upload a resume</a>
+</p>
 {% endif %}
 {% endblock %}

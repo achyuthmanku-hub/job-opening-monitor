@@ -2,7 +2,18 @@
 {% block title %}Settings — Job Intelligence{% endblock %}
 {% block content %}
 <h1>Settings</h1>
-<p class="muted">Alert channels, global filters, and RAG alert thresholds.</p>
+<p class="muted">Operator controls — job pool, alerts, and Fortune 500 coverage.</p>
+
+<div class="card" style="margin:1rem 0; border-color:#3b82f6;">
+  <h3 style="margin-top:0;">Share with friends</h3>
+  <ol class="muted">
+    <li>Import companies: <code>python scripts/import_company_pack.py fortune500.yaml</code></li>
+    <li>Scan jobs: <code>curl -X POST http://localhost:8000/jobs/scan</code> (or <code>python run.py</code>)</li>
+    <li>Embed jobs once: <code>curl -X POST "http://localhost:8000/jobs/embed"</code></li>
+    <li>Friends open <a href="/ui/upload">/ui/upload</a>, upload their resume, and get personal matches.</li>
+  </ol>
+  <p class="muted" style="margin-bottom:0;">Jobs are shared. Each resume only changes that person’s rankings.</p>
+</div>
 
 <div class="card" style="margin:1rem 0;">
   <h3>Alert config (<code>config.yaml</code>)</h3>

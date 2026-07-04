@@ -1,0 +1,748 @@
+pack: fortune500
+description: >
+  Fortune 500 and major US employers with public ATS boards (Greenhouse, Ashby,
+  Lever, Workday, Oracle, Amazon). Not every F500 company exposes a scrapeable
+  board — this pack prioritizes reliable sources. Import, then run a scan.
+
+companies:
+  # --- Big Tech / F500 tech ---
+  - name: Amazon
+    sources:
+      - type: amazon
+        query: software engineer
+  - name: Apple
+    sources:
+      - type: career_portal
+        url: https://jobs.apple.com/en-us/search?search=software%20engineer
+  - name: Microsoft
+    sources:
+      - type: career_portal
+        url: https://apply.careers.microsoft.com/careers
+  - name: Google
+    sources:
+      - type: career_portal
+        url: https://www.google.com/about/careers/applications/jobs/results/?q=software%20engineer
+  - name: Meta
+    sources:
+      - type: career_portal
+        url: https://www.metacareers.com/jobs?q=software%20engineer
+  - name: Nvidia
+    sources:
+      - type: workday
+        tenant: nvidia
+        wd: wd5
+        site: NVIDIAExternalCareerSite
+        query: software engineer
+  - name: Oracle
+    sources:
+      - type: oracle
+        host: eeho.fa.us2.oraclecloud.com
+        site: CX_1
+        query: software engineer
+  - name: IBM
+    sources:
+      - type: career_portal
+        url: https://www.ibm.com/careers/search?field_keyword_08%5B0%5D=Software%20Engineering
+  - name: Intel
+    sources:
+      - type: workday
+        tenant: intel
+        wd: wd1
+        site: External
+        query: software engineer
+  - name: Cisco
+    sources:
+      - type: career_portal
+        url: https://jobs.cisco.com/jobs/SearchJobs/?keyword=software%20engineer
+  - name: Adobe
+    sources:
+      - type: career_portal
+        url: https://careers.adobe.com/us/en/search-results?keywords=software%20engineer
+  - name: Salesforce
+    sources:
+      - type: career_portal
+        url: https://careers.salesforce.com/en/jobs/?search=software%20engineer
+  - name: Broadcom
+    sources:
+      - type: workday
+        tenant: broadcom
+        wd: wd1
+        site: External_Career
+        query: software engineer
+  - name: Qualcomm
+    sources:
+      - type: workday
+        tenant: qualcomm
+        wd: wd5
+        site: External
+        query: software engineer
+  - name: Texas Instruments
+    sources:
+      - type: workday
+        tenant: ti
+        wd: wd1
+        site: Careers
+        query: software engineer
+  - name: Applied Materials
+    sources:
+      - type: workday
+        tenant: appliedmaterials
+        wd: wd1
+        site: External
+        query: software engineer
+
+  # --- High-growth / public tech (often F500-adjacent) ---
+  - name: Netflix
+    sources:
+      - type: career_portal
+        url: https://jobs.netflix.com/
+  - name: Airbnb
+    sources:
+      - type: greenhouse
+        slug: airbnb
+  - name: Uber
+    sources:
+      - type: linkedin
+        url: https://www.linkedin.com/company/uber/jobs
+  - name: Lyft
+    sources:
+      - type: greenhouse
+        slug: lyft
+  - name: DoorDash
+    sources:
+      - type: linkedin
+        url: https://www.linkedin.com/company/doordash/jobs
+  - name: Spotify
+    sources:
+      - type: lever
+        slug: spotify
+  - name: Block
+    sources:
+      - type: greenhouse
+        slug: block
+  - name: PayPal
+    sources:
+      - type: workday
+        tenant: paypal
+        wd: wd1
+        site: jobs
+        query: software engineer
+  - name: Intuit
+    sources:
+      - type: workday
+        tenant: intuit
+        wd: wd1
+        site: IntuitCareers
+        query: software engineer
+  - name: ServiceNow
+    sources:
+      - type: workday
+        tenant: servicenow
+        wd: wd1
+        site: External
+        query: software engineer
+  - name: Workday
+    sources:
+      - type: workday
+        tenant: workday
+        wd: wd5
+        site: Workday
+        query: software engineer
+  - name: Snowflake
+    sources:
+      - type: greenhouse
+        slug: snowflakeinc
+  - name: Databricks
+    sources:
+      - type: greenhouse
+        slug: databricks
+  - name: Palantir
+    sources:
+      - type: greenhouse
+        slug: palantirtech
+  - name: Cloudflare
+    sources:
+      - type: greenhouse
+        slug: cloudflare
+  - name: Datadog
+    sources:
+      - type: greenhouse
+        slug: datadog
+  - name: MongoDB
+    sources:
+      - type: greenhouse
+        slug: mongodb
+  - name: Twilio
+    sources:
+      - type: greenhouse
+        slug: twilio
+  - name: Okta
+    sources:
+      - type: greenhouse
+        slug: okta
+  - name: Crowdstrike
+    sources:
+      - type: greenhouse
+        slug: crowdstrike
+  - name: Zoom
+    sources:
+      - type: workday
+        tenant: zoom
+        wd: wd1
+        site: Zoom
+        query: software engineer
+  - name: Dropbox
+    sources:
+      - type: greenhouse
+        slug: dropbox
+  - name: Pinterest
+    sources:
+      - type: greenhouse
+        slug: pinterest
+  - name: Snap
+    sources:
+      - type: greenhouse
+        slug: snapchat
+  - name: Reddit
+    sources:
+      - type: greenhouse
+        slug: reddit
+  - name: Roblox
+    sources:
+      - type: greenhouse
+        slug: roblox
+  - name: Coinbase
+    sources:
+      - type: greenhouse
+        slug: coinbase
+  - name: Robinhood
+    sources:
+      - type: greenhouse
+        slug: robinhood
+  - name: Affirm
+    sources:
+      - type: greenhouse
+        slug: affirm
+  - name: Stripe
+    sources:
+      - type: greenhouse
+        slug: stripe
+  - name: Square
+    sources:
+      - type: greenhouse
+        slug: square
+
+  # --- Finance F500 ---
+  - name: JPMorgan Chase
+    sources:
+      - type: oracle
+        host: jpmc.fa.oraclecloud.com
+        site: CX_1001
+        query: software engineer
+  - name: Bank of America
+    sources:
+      - type: workday
+        tenant: ghr
+        wd: wd1
+        site: lateral-us
+        query: software engineer
+  - name: Wells Fargo
+    sources:
+      - type: workday
+        tenant: wf
+        wd: wd1
+        site: WellsFargoJobs
+        query: software engineer
+  - name: Citigroup
+    sources:
+      - type: workday
+        tenant: citi
+        wd: wd5
+        site: Citigroup
+        query: software engineer
+  - name: Goldman Sachs
+    sources:
+      - type: career_portal
+        url: https://higher.gs.com/results?keyword=software%20engineer
+  - name: Morgan Stanley
+    sources:
+      - type: workday
+        tenant: ms
+        wd: wd5
+        site: External
+        query: software engineer
+  - name: Capital One
+    sources:
+      - type: career_portal
+        url: https://www.capitalonecareers.com/search-jobs?k=software%20engineer
+  - name: American Express
+    sources:
+      - type: linkedin
+        url: https://www.linkedin.com/company/american-express/jobs
+  - name: Visa
+    sources:
+      - type: workday
+        tenant: visa
+        wd: wd5
+        site: Visa
+        query: software engineer
+  - name: Mastercard
+    sources:
+      - type: workday
+        tenant: mastercard
+        wd: wd1
+        site: CorporateCareers
+        query: software engineer
+  - name: Fidelity Investments
+    sources:
+      - type: workday
+        tenant: fmr
+        wd: wd1
+        site: FidelityCareers
+        query: software engineer
+  - name: Charles Schwab
+    sources:
+      - type: workday
+        tenant: schwab
+        wd: wd1
+        site: External
+        query: software engineer
+  - name: BlackRock
+    sources:
+      - type: workday
+        tenant: blackrock
+        wd: wd1
+        site: BlackRock
+        query: software engineer
+  - name: State Street
+    sources:
+      - type: workday
+        tenant: statestreet
+        wd: wd1
+        site: StateStreet
+        query: software engineer
+  - name: US Bank
+    sources:
+      - type: workday
+        tenant: usbank
+        wd: wd1
+        site: USBankCareers
+        query: software engineer
+  - name: PNC
+    sources:
+      - type: workday
+        tenant: pnc
+        wd: wd1
+        site: Careers
+        query: software engineer
+  - name: Truist
+    sources:
+      - type: workday
+        tenant: truist
+        wd: wd1
+        site: Careers
+        query: software engineer
+  - name: Discover
+    sources:
+      - type: workday
+        tenant: discover
+        wd: wd5
+        site: Discover
+        query: software engineer
+
+  # --- Retail / consumer F500 ---
+  - name: Walmart
+    sources:
+      - type: workday
+        tenant: walmart
+        wd: wd5
+        site: WalmartExternal
+        query: software engineer
+  - name: Target
+    sources:
+      - type: workday
+        tenant: target
+        wd: wd5
+        site: TargetCareers
+        query: software engineer
+  - name: Costco
+    sources:
+      - type: workday
+        tenant: costco
+        wd: wd1
+        site: External
+        query: software engineer
+  - name: Home Depot
+    sources:
+      - type: workday
+        tenant: homedepot
+        wd: wd5
+        site: HDCareers
+        query: software engineer
+  - name: Best Buy
+    sources:
+      - type: workday
+        tenant: bestbuy
+        wd: wd5
+        site: BestBuyCareers
+        query: software engineer
+  - name: Lowe's
+    sources:
+      - type: workday
+        tenant: lowes
+        wd: wd1
+        site: LowesCareers
+        query: software engineer
+  - name: Nike
+    sources:
+      - type: workday
+        tenant: nike
+        wd: wd5
+        site: NikeCareers
+        query: software engineer
+  - name: Starbucks
+    sources:
+      - type: workday
+        tenant: starbucks
+        wd: wd5
+        site: StarbucksCareers
+        query: software engineer
+  - name: McDonald's
+    sources:
+      - type: workday
+        tenant: mcdonalds
+        wd: wd5
+        site: McDonaldsCareers
+        query: software engineer
+  - name: Coca-Cola
+    sources:
+      - type: workday
+        tenant: coca-cola
+        wd: wd1
+        site: CocaColaCareers
+        query: software engineer
+  - name: PepsiCo
+    sources:
+      - type: workday
+        tenant: pepsico
+        wd: wd5
+        site: PepsiCoCareers
+        query: software engineer
+
+  # --- Healthcare / pharma F500 ---
+  - name: UnitedHealth Group
+    sources:
+      - type: workday
+        tenant: uhg
+        wd: wd5
+        site: UHGCareers
+        query: software engineer
+  - name: CVS Health
+    sources:
+      - type: workday
+        tenant: cvs
+        wd: wd5
+        site: CVSHealthCareers
+        query: software engineer
+  - name: Cigna
+    sources:
+      - type: workday
+        tenant: cigna
+        wd: wd1
+        site: CignaCareers
+        query: software engineer
+  - name: Elevance Health
+    sources:
+      - type: workday
+        tenant: elevancehealth
+        wd: wd1
+        site: Careers
+        query: software engineer
+  - name: Pfizer
+    sources:
+      - type: workday
+        tenant: pfizer
+        wd: wd1
+        site: PfizerCareers
+        query: software engineer
+  - name: Johnson & Johnson
+    sources:
+      - type: workday
+        tenant: jnj
+        wd: wd5
+        site: JNJCareers
+        query: software engineer
+  - name: Merck
+    sources:
+      - type: workday
+        tenant: merck
+        wd: wd5
+        site: MerckCareers
+        query: software engineer
+  - name: AbbVie
+    sources:
+      - type: workday
+        tenant: abbvie
+        wd: wd1
+        site: AbbVieCareers
+        query: software engineer
+  - name: Abbott
+    sources:
+      - type: workday
+        tenant: abbott
+        wd: wd1
+        site: AbbottCareers
+        query: software engineer
+  - name: Thermo Fisher Scientific
+    sources:
+      - type: workday
+        tenant: thermofisher
+        wd: wd5
+        site: ThermoFisherCareers
+        query: software engineer
+
+  # --- Industrial / auto / aerospace F500 ---
+  - name: General Motors
+    sources:
+      - type: workday
+        tenant: gm
+        wd: wd5
+        site: GMCareers
+        query: software engineer
+  - name: Ford
+    sources:
+      - type: workday
+        tenant: ford
+        wd: wd1
+        site: FordCareers
+        query: software engineer
+  - name: Tesla
+    sources:
+      - type: greenhouse
+        slug: tesla
+  - name: Boeing
+    sources:
+      - type: workday
+        tenant: boeing
+        wd: wd1
+        site: BoeingCareers
+        query: software engineer
+  - name: Lockheed Martin
+    sources:
+      - type: workday
+        tenant: lockheedmartin
+        wd: wd1
+        site: LockheedMartinCareers
+        query: software engineer
+  - name: Raytheon Technologies
+    sources:
+      - type: workday
+        tenant: rtx
+        wd: wd1
+        site: RTXCareers
+        query: software engineer
+  - name: General Electric
+    sources:
+      - type: workday
+        tenant: ge
+        wd: wd1
+        site: GECareers
+        query: software engineer
+  - name: Honeywell
+    sources:
+      - type: workday
+        tenant: honeywell
+        wd: wd1
+        site: HoneywellCareers
+        query: software engineer
+  - name: Caterpillar
+    sources:
+      - type: workday
+        tenant: caterpillar
+        wd: wd5
+        site: CaterpillarCareers
+        query: software engineer
+  - name: Deere
+    sources:
+      - type: workday
+        tenant: deere
+        wd: wd5
+        site: DeereCareers
+        query: software engineer
+
+  # --- Telecom / media / travel F500 ---
+  - name: AT&T
+    sources:
+      - type: workday
+        tenant: att
+        wd: wd1
+        site: ATTCareers
+        query: software engineer
+  - name: Verizon
+    sources:
+      - type: workday
+        tenant: verizon
+        wd: wd1
+        site: VerizonCareers
+        query: software engineer
+  - name: Comcast
+    sources:
+      - type: workday
+        tenant: comcast
+        wd: wd5
+        site: ComcastCareers
+        query: software engineer
+  - name: Disney
+    sources:
+      - type: workday
+        tenant: disney
+        wd: wd5
+        site: DisneyCareers
+        query: software engineer
+  - name: Warner Bros Discovery
+    sources:
+      - type: workday
+        tenant: wbd
+        wd: wd1
+        site: WBDCareers
+        query: software engineer
+  - name: Expedia Group
+    sources:
+      - type: career_portal
+        url: https://careers.expediagroup.com/jobs/?keyword=software%20engineer
+  - name: Booking Holdings
+    sources:
+      - type: greenhouse
+        slug: bookingcom
+  - name: American Airlines
+    sources:
+      - type: workday
+        tenant: aa
+        wd: wd1
+        site: AACareers
+        query: software engineer
+  - name: Delta Air Lines
+    sources:
+      - type: workday
+        tenant: delta
+        wd: wd5
+        site: DeltaCareers
+        query: software engineer
+  - name: United Airlines
+    sources:
+      - type: workday
+        tenant: united
+        wd: wd1
+        site: UnitedCareers
+        query: software engineer
+
+  # --- Logistics / energy F500 ---
+  - name: UPS
+    sources:
+      - type: workday
+        tenant: ups
+        wd: wd5
+        site: UPSCareers
+        query: software engineer
+  - name: FedEx
+    sources:
+      - type: workday
+        tenant: fedex
+        wd: wd1
+        site: FedExCareers
+        query: software engineer
+  - name: ExxonMobil
+    sources:
+      - type: workday
+        tenant: exxonmobil
+        wd: wd1
+        site: ExxonMobilCareers
+        query: software engineer
+  - name: Chevron
+    sources:
+      - type: workday
+        tenant: chevron
+        wd: wd1
+        site: ChevronCareers
+        query: software engineer
+  - name: Shell
+    sources:
+      - type: workday
+        tenant: shell
+        wd: wd3
+        site: ShellCareers
+        query: software engineer
+
+  # --- Insurance F500 ---
+  - name: Progressive
+    sources:
+      - type: workday
+        tenant: progressive
+        wd: wd5
+        site: ProgressiveCareers
+        query: software engineer
+  - name: Allstate
+    sources:
+      - type: workday
+        tenant: allstate
+        wd: wd1
+        site: AllstateCareers
+        query: software engineer
+  - name: GEICO
+    sources:
+      - type: workday
+        tenant: geico
+        wd: wd1
+        site: External
+        query: software engineer
+  - name: MetLife
+    sources:
+      - type: workday
+        tenant: metlife
+        wd: wd1
+        site: MetLifeCareers
+        query: software engineer
+  - name: Prudential
+    sources:
+      - type: workday
+        tenant: prudential
+        wd: wd1
+        site: PrudentialCareers
+        query: software engineer
+
+  # --- Consulting / IT services ---
+  - name: Accenture
+    sources:
+      - type: workday
+        tenant: accenture
+        wd: wd1
+        site: AccentureCareers
+        query: software engineer
+  - name: Deloitte
+    sources:
+      - type: workday
+        tenant: deloitte
+        wd: wd1
+        site: DeloitteCareers
+        query: software engineer
+  - name: Cognizant
+    sources:
+      - type: workday
+        tenant: cognizant
+        wd: wd1
+        site: CognizantCareers
+        query: software engineer
+  - name: Infosys
+    sources:
+      - type: workday
+        tenant: infosys
+        wd: wd1
+        site: InfosysCareers
+        query: software engineer
+  - name: TCS
+    sources:
+      - type: workday
+        tenant: tcs
+        wd: wd1
+        site: TCSCareers
+        query: software engineer

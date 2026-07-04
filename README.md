@@ -8,6 +8,25 @@ Built as a production-style backend system: FastAPI API, PostgreSQL, Celery work
 
 ---
 
+## For friends (multi-resume matching)
+
+Jobs are scraped **once** into a shared pool. Each person uploads their own resume and gets a personal ranked list.
+
+1. **You (operator):** import Fortune 500 pack → scan → embed jobs  
+2. **Friends:** open the site → **Upload resume** → see matches  
+
+```bash
+python scripts/import_company_pack.py fortune500.yaml
+# start API: python run_api.py
+curl -X POST http://localhost:8000/jobs/scan
+curl -X POST "http://localhost:8000/jobs/embed"
+# Friends visit: http://localhost:8000/ui/upload
+```
+
+The Fortune 500 pack (`data/company_packs/fortune500.yaml`) covers **100+** major US employers with public ATS boards (not every F500 site is scrapeable).
+
+---
+
 ## Why this exists
 
 Job search across dozens of company career pages is noisy and manual. This project turns that into a **pipeline**:

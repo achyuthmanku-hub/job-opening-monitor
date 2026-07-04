@@ -12,8 +12,13 @@ from sqlalchemy.orm import Session, joinedload
 from api.schemas.auth import parse_preferences
 from api.services.discovery import discover_company
 from api.services.job_queries import query_jobs
-from api.services.rag_pipeline import load_json_list, match_profile_to_jobs
-from api.services.resume_onboarding import extract_resume_text, onboard_resume, read_upload
+from api.services.rag_pipeline import load_json_list
+from api.services.resume_upload import (
+    create_profile_from_resume,
+    extract_resume_text,
+    read_upload,
+    run_match_pipeline,
+)
 from src.config import ROOT, load_settings
 from src.db import get_db
 from src.db.models import Company, Job, JobMatch, Profile, User
@@ -22,124 +27,8 @@ router = APIRouter(tags=["ui"])
 templates = Jinja2Templates(directory=str(ROOT / "api" / "templates"))
 
 
-def _share_url(request: Request, profile_id: int) -> str:
-    return str(request.base_url).rstrip("/") + f"/p/{profile_id}"
-
-
-def _match_rows(db: Session, profile_id: int, min_score: float, limit: int = 50) -> list[dict]:
-    rows = (
-        db.query(JobMatch)
-        .filter(JobMatch.profile_id == profile_id, JobMatch.score >= min_score)
-        .options(joinedload(JobMatch.job).joinedload(Job.company))
-        .order_by(JobMatch.score.desc())
-        .limit(limit)
-        .all()
-    )
-    matches = []
-    for row in rows:
-        job = row.job
-        matches.append(
-            {
-                "score": round(row.score, 1),
-                "company": job.company.name if job and job.company else "",
-                "title": job.title if job else "",
-                "url": job.url if job else "",
-                "summary": row.summary or "",
-                "strengths": load_json_list(row.strengths_json),
-                "gaps": load_json_list(row.gaps_json),
-            }
-        )
-    return matches
-
-
 @router.get("/", response_class=HTMLResponse)
-def home(request: Request, db: Session = Depends(get_db), error: str = Query(default="")) -> HTMLResponse:
-    return templates.TemplateResponse(
-        request,
-        "home.html",
-        {
-            "error": error,
-            "job_count": db.query(func.count(Job.id)).scalar() or 0,
-            "company_count": db.query(func.count(Company.id)).scalar() or 0,
-            "profile_count": db.query(func.count(Profile.id)).scalar() or 0,
-        },
-    )
-
-
-@router.post("/upload")
-async def upload_resume(
-    request: Request,
-    name: str = Form(...),
-    resume: UploadFile = File(...),
-    use_llm: Optional[str] = Form(default=None),
-    db: Session = Depends(get_db),
-):
-    try:
-        filename, data = await read_upload(resume)
-        resume_text = extract_resume_text(filename, data)
-        result = onboard_resume(
-            db,
-            name=name,
-            resume_text=resume_text,
-            min_score=40.0,
-            limit=30,
-            use_llm=bool(use_llm),
-        )
-        return RedirectResponse(url=f"/p/{result['profile_id']}", status_code=303)
-    except Exception as exc:
-        return RedirectResponse(url=f"/?error={quote(str(exc))}", status_code=303)
-
-
-@router.get("/p/{profile_id}", response_class=HTMLResponse)
-def profile_matches_page(
-    request: Request,
-    profile_id: int,
-    min_score: float = Query(default=40.0, ge=0, le=100),
-    refresh: bool = Query(default=False),
-    db: Session = Depends(get_db),
-) -> HTMLResponse:
-    profile = db.query(Profile).filter(Profile.id == profile_id).one_or_none()
-    if profile is None:
-        return RedirectResponse(url="/?error=Profile%20not%20found", status_code=303)
-
-    if refresh:
-        match_profile_to_jobs(
-            db,
-            profile_id,
-            min_score=0.0,
-            limit=30,
-            use_llm=False,
-            store=True,
-        )
-
-    matches = _match_rows(db, profile_id, min_score=min_score)
-    if not matches:
-        # First visit with no stored matches — rank all jobs, keep top results.
-        match_profile_to_jobs(
-            db,
-            profile_id,
-            min_score=0.0,
-            limit=30,
-            use_llm=False,
-            store=True,
-        )
-        matches = _match_rows(db, profile_id, min_score=min_score)
-
-    return templates.TemplateResponse(
-        request,
-        "profile_matches.html",
-        {
-            "profile": profile,
-            "matches": matches,
-            "min_score": min_score,
-            "share_url": _share_url(request, profile_id),
-            "processing": False,
-        },
-    )
-
-
-@router.get("/ui/dashboard", response_class=HTMLResponse)
-def dashboard(request: Request, db: Session = Depends(get_db)) -> HTMLResponse:
+def landing(request: Request, db: Session = Depends(get_db)) -> HTMLResponse:
     job_count = db.query(func.count(Job.id)).scalar() or 0
     company_count = db.query(func.count(Company.id)).scalar() or 0
     profile_count = db.query(func.count(Profile.id)).scalar() or 0
@@ -167,7 +56,7 @@ def dashboard(request: Request, db: Session = Depends(get_db)) -> HTMLResponse:
 
     return templates.TemplateResponse(
         request,
-        "dashboard.html",
+        "landing.html",
         {
             "job_count": job_count,
             "company_count": company_count,
@@ -176,6 +65,48 @@ def dashboard(request: Request, db: Session = Depends(get_db)) -> HTMLResponse:
             "matches": match_rows,
         },
     )
+
+
+@router.get("/ui/upload", response_class=HTMLResponse)
+def upload_page(
+    request: Request,
+    error: str = Query(default=""),
+) -> HTMLResponse:
+    return templates.TemplateResponse(
+        request,
+        "upload.html",
+        {"error": error},
+    )
+
+
+@router.post("/ui/upload")
+async def upload_resume(
+    request: Request,
+    name: str = Form(...),
+    min_score: float = Form(default=60.0),
+    resume: UploadFile = File(...),
+    db: Session = Depends(get_db),
+):
+    try:
+        filename, data = await read_upload(resume)
+        resume_text = extract_resume_text(filename, data)
+        profile = create_profile_from_resume(db, name=name, resume_text=resume_text)
+        run_match_pipeline(
+            db,
+            profile.id,
+            min_score=float(min_score),
+            limit=30,
+            use_llm=False,
+        )
+        return RedirectResponse(
+            url=f"/ui/matches?profile_id={profile.id}&min_score={min_score}",
+            status_code=303,
+        )
+    except Exception as exc:
+        return RedirectResponse(
+            url=f"/ui/upload?error={quote(str(exc))}",
+            status_code=303,
+        )
 
 
 @router.get("/ui/jobs", response_class=HTMLResponse)
@@ -200,7 +131,41 @@ def matches_page(
     min_score: float = 60,
     db: Session = Depends(get_db),
 ) -> HTMLResponse:
-    return RedirectResponse(url=f"/p/{profile_id}?min_score={min_score}", status_code=303)
+    rows = (
+        db.query(JobMatch)
+        .filter(JobMatch.profile_id == profile_id, JobMatch.score >= min_score)
+        .options(joinedload(JobMatch.job).joinedload(Job.company))
+        .order_by(JobMatch.score.desc())
+        .limit(50)
+        .all()
+    )
+    matches = []
+    for row in rows:
+        job = row.job
+        matches.append(
+            {
+                "score": round(row.score, 1),
+                "company": job.company.name if job and job.company else "",
+                "title": job.title if job else "",
+                "url": job.url if job else "",
+                "summary": row.summary or "",
+                "strengths": load_json_list(row.strengths_json),
+                "gaps": load_json_list(row.gaps_json),
+            }
+        )
+    profile = db.query(Profile).filter(Profile.id == profile_id).one_or_none()
+    profiles = db.query(Profile).order_by(Profile.created_at.desc()).limit(20).all()
+    return templates.TemplateResponse(
+        request,
+        "matches.html",
+        {
+            "profile": profile,
+            "profiles": profiles,
+            "matches": matches,
+            "min_score": min_score,
+            "profile_id": profile_id,
+        },
+    )
 
 
 @router.get("/ui/settings", response_class=HTMLResponse)
