@@ -4,8 +4,8 @@ from api.routes import auth, companies, health, jobs, operations, profiles, task
 
 app = FastAPI(
     title="Job Intelligence Monitor",
-    description="Phase 1–5 API: ingestion, NLP, RAG, discovery, workers, multi-user auth, and alerts.",
-    version="0.5.0",
+    description="Upload a resume, get personalized job matches from a shared ATS job pool.",
+    version="0.6.0",
 )
 
 app.include_router(health.router)

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}{{ profile.name }} — Job matches{% endblock %}
+{% block content %}
+<div class="profile-header">
+  <div>
+    <h1>Matches for {{ profile.name }}</h1>
+    <p class="muted">
+      {{ matches|length }} roles at or above {{ min_score }}% fit
+      · Profile #{{ profile.id }}
+    </p>
+  </div>
+  <div class="share-box card">
+    <div class="muted" style="margin-bottom:.35rem;">Your personal link (bookmark this)</div>
+    <code class="share-link">{{ share_url }}</code>
+  </div>
+</div>
+
+{% if processing %}
+<div class="card" style="margin:1rem 0;">Computing matches… refresh in a moment.</div>
+{% endif %}
+
+{% if matches %}
+<table>
+  <thead>
+    <tr>
+      <th>Fit</th>
+      <th>Role</th>
+      <th>Why it fits</th>
+      <th>Gaps</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for m in matches %}
+    <tr>
+      <td class="score">{{ m.score }}%</td>
+      <td>
+        <a href="{{ m.url }}" target="_blank" rel="noopener">{{ m.company }} — {{ m.title }}</a>
+      </td>
+      <td class="muted">{{ m.summary }}</td>
+      <td class="muted">{{ m.gaps | join(', ') if m.gaps else '—' }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="card" style="margin-top:1rem;">
+  <p>No matches above {{ min_score }}% yet.</p>
+  <p class="muted">Jobs may still be loading into the pool, or try a lower threshold.</p>
+  <p><a href="/">Upload again</a> · <a href="/p/{{ profile.id }}?min_score=0&refresh=true">Show all ranked jobs</a></p>
+</div>
+{% endif %}
+
+<p style="margin-top:1.5rem;">
+  <a href="/">← Match another resume</a>
+  ·
+  <a href="/ui/jobs">Browse all jobs</a>
+</p>
+{% endblock %}
