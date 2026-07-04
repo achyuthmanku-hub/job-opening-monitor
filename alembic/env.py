@@ -7,7 +7,7 @@ from sqlalchemy import engine_from_config, pool
 from alembic import context
 
 from src.config import ROOT
-from src.db.base import Base
+from src.db.base import Base, normalize_database_url
 
 load_dotenv(ROOT / ".env")
 
@@ -18,9 +18,10 @@ if config.config_file_name is not None:
 
 target_metadata = Base.metadata
 
-database_url = os.getenv("DATABASE_URL", "").strip()
+database_url = normalize_database_url(os.getenv("DATABASE_URL", ""))
 if database_url:
-    config.set_main_option("sqlalchemy.url", database_url)
+    # Alembic ConfigParser treats % as interpolation — escape for URLs with passwords.
+    config.set_main_option("sqlalchemy.url", database_url.replace("%", "%%"))
 
 
 def run_migrations_offline() -> None:

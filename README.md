@@ -151,13 +151,23 @@ Open:
 - **API docs:** http://localhost:8000/docs  
 - **Matches UI:** http://localhost:8000/ui/matches  
 
-### Docker
+### Docker (local)
 
 ```bash
 docker compose up
 ```
 
 Runs API, Celery worker, beat scheduler, Postgres, and Redis.
+
+### Public URL for friends
+
+See **[DEPLOY.md](DEPLOY.md)** — one-click Render/Railway deploy, then seed jobs from your laptop:
+
+```bash
+export DATABASE_URL='postgresql://...your-host...'
+python scripts/seed_job_pool.py
+# Friends: https://YOUR-APP.onrender.com/ui/upload
+```
 
 ---
 

@@ -1,0 +1,12 @@
+# Railway — https://railway.app
+# Deploy: New Project → Deploy from GitHub → select this repo
+# Add a Postgres plugin and set DATABASE_URL (Railway does this automatically).
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"

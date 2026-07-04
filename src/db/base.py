@@ -16,9 +16,17 @@ class Base(DeclarativeBase):
     pass
 
 
+def normalize_database_url(url: str) -> str:
+    """Render/Heroku use postgres://; SQLAlchemy expects postgresql://."""
+    url = (url or "").strip()
+    if url.startswith("postgres://"):
+        url = "postgresql://" + url[len("postgres://") :]
+    return url
+
+
 @lru_cache
 def get_database_url() -> str:
-    return os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL).strip()
+    return normalize_database_url(os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL))
 
 
 def get_engine():

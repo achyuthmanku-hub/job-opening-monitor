@@ -1,0 +1,45 @@
+# Render Blueprint — https://render.com
+# Deploy: Dashboard → New → Blueprint → connect this repo
+#
+# After deploy:
+# 1. Open https://YOUR-SERVICE.onrender.com/ui/upload
+# 2. From your laptop, seed jobs (scan can take a long time):
+#    DATABASE_URL='<from Render Postgres>' python -c "..."
+#    or: curl -X POST https://YOUR-SERVICE.onrender.com/jobs/scan
+#
+# Free web services spin down after idle; first request may take ~1 min.
+# Resume matching needs ~1–2 GB RAM — use Starter plan if free tier OOMs.
+
+services:
+  - type: web
+    name: job-intelligence-api
+    runtime: docker
+    plan: starter
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: job-intelligence-db
+          property: connectionString
+      - key: IMPORT_FORTUNE500
+        value: "true"
+      - key: WEB_WORKERS
+        value: "1"
+      - key: API_AUTH_ENABLED
+        value: "false"
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: NOTIFY_EMAIL
+        sync: false
+
+databases:
+  - name: job-intelligence-db
+    plan: free
+    databaseName: job_monitor
+    user: jobmonitor
