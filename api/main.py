@@ -4,7 +4,7 @@ from api.routes import auth, companies, health, jobs, operations, profiles, task
 
 app = FastAPI(
     title="Job Intelligence Monitor",
-    description="Upload a resume, get personalized job matches from a shared ATS job pool.",
+    description="Upload a resume, get personalized job matches from a shared Fortune 500 / ATS job pool.",
     version="0.6.0",
 )
 
