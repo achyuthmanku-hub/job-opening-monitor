@@ -132,10 +132,21 @@ cp companies.example.yaml companies.yaml
 cp .env.example .env
 # Edit .env with SMTP settings
 
-python run.py --dry-run   # preview
-python run.py --seed      # mark current jobs as seen
-python run.py             # real run + email
+python run.py --dry-run   # preview matching jobs (no email)
+python run.py --seed      # mark current jobs as seen (avoids email flood)
+python run.py             # run now + email new openings
+python run.py --digest    # daily digest email (last ~48 hours)
 ```
+
+### Daily emails on macOS
+
+```bash
+chmod +x scripts/install_*.sh
+./scripts/install_all_launchd.sh
+# Hourly alerts + daily digest at 9:00 AM (US keywords, 1–5 yrs, local companies.yaml)
+```
+
+Filters live in `config.yaml` (`experience_min_years: 1`, `experience_max_years: 5`). Company list is local `companies.yaml` (gitignored).
 
 ### Full platform (Postgres + API + RAG)
 

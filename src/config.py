@@ -49,6 +49,7 @@ def load_settings() -> dict:
         "experience_filter_enabled": filters.get("experience_filter_enabled", True),
         "experience_min_years": _parse_year_value(filters.get("experience_min_years"), 1),
         "experience_max_years": _parse_year_value(filters.get("experience_max_years"), 5),
+        "digest_posted_max_hours": float(filters.get("digest_posted_max_hours", 48)),
         "request_timeout": config.get("request_timeout", 30),
         "user_agent": config.get(
             "user_agent", "JobOpeningMonitor/1.0 (+personal job alert bot)"

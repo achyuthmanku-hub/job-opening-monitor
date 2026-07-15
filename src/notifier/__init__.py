@@ -7,7 +7,12 @@ from pathlib import Path
 from ..models import JobPosting
 
 
-def send_email(jobs: list[JobPosting], smtp_config: dict) -> None:
+def send_email(
+    jobs: list[JobPosting],
+    smtp_config: dict,
+    *,
+    digest: bool = False,
+) -> None:
     if not jobs:
         return
 
@@ -18,7 +23,11 @@ def send_email(jobs: list[JobPosting], smtp_config: dict) -> None:
             "Email notification is not configured. Set SMTP_* and NOTIFY_EMAIL in .env"
         )
 
-    subject = f"New job openings ({len(jobs)})"
+    subject = (
+        f"Daily job digest ({len(jobs)} openings, 1–5 yrs)"
+        if digest
+        else f"New job openings ({len(jobs)})"
+    )
     lines = []
     for job in jobs:
         location = f" — {job.location}" if job.location else ""
@@ -28,7 +37,11 @@ def send_email(jobs: list[JobPosting], smtp_config: dict) -> None:
             f"  {job.url}\n"
         )
 
-    body = "New job postings detected:\n\n" + "\n".join(lines)
+    body = (
+        "Daily digest — new SWE / backend roles (US, ~1–5 years experience):\n\n"
+        if digest
+        else "New job postings detected:\n\n"
+    ) + "\n".join(lines)
 
     msg = MIMEMultipart()
     msg["From"] = smtp_config["user"]

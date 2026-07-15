@@ -47,15 +47,37 @@ def fetch_all_jobs(settings: dict) -> list[JobPosting]:
     return all_jobs
 
 
-def run(dry_run: bool = False, seed: bool = False) -> int:
+def run(
+    dry_run: bool = False,
+    seed: bool = False,
+    *,
+    digest: bool = False,
+) -> int:
     settings = load_settings()
+    if digest:
+        # Daily catch-up: wider posting window so one morning email covers the day.
+        settings = {
+            **settings,
+            "posted_min_hours": 0,
+            "posted_max_hours": float(settings.get("digest_posted_max_hours", 48)),
+            "allow_missing_posted_time": True,
+        }
+        logger.info(
+            "Daily digest mode: posting window 0–%.0fh.",
+            settings["posted_max_hours"],
+        )
+
     store = JobStore(DATA_DIR / "seen_jobs.db")
-    logger.info("Job monitor started.")
+    logger.info(
+        "Job monitor started (%d companies).",
+        len(settings.get("companies", [])),
+    )
+    exp_min = int(settings.get("experience_min_years", 1))
     exp_max = int(settings.get("experience_max_years", 5))
     if settings.get("experience_filter_enabled", True):
         logger.info(
-            "Experience filter active: %d–%d years (skips senior / higher-experience roles).",
-            int(settings.get("experience_min_years", 0)),
+            "Experience filter active: %d–%d years (skips interns + senior / higher-experience roles).",
+            exp_min,
             exp_max,
         )
 
@@ -66,9 +88,10 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
         matching = [job for job in fetched if job_matches_filters(job, settings)]
         excluded = len(fetched) - len(matching)
         logger.info(
-            "Matched %d job(s) after US / role / posting-time / experience (0-%d yrs) filters "
+            "Matched %d job(s) after US / role / posting-time / experience (%d-%d yrs) filters "
             "(%d excluded).",
             len(matching),
+            exp_min,
             exp_max,
             excluded,
         )
@@ -93,7 +116,7 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
             )
             return 0
 
-        send_email(new_jobs, settings["smtp"])
+        send_email(new_jobs, settings["smtp"], digest=digest)
         for job in new_jobs:
             store.mark_seen(job)
 
@@ -106,4 +129,5 @@ def run(dry_run: bool = False, seed: bool = False) -> int:
 def main() -> None:
     dry_run = "--dry-run" in sys.argv
     seed = "--seed" in sys.argv
-    raise SystemExit(run(dry_run=dry_run, seed=seed))
+    digest = "--digest" in sys.argv
+    raise SystemExit(run(dry_run=dry_run, seed=seed, digest=digest))

@@ -16,6 +16,8 @@ filters:
   # Keep mid/early roles only: about 1–5 years (skips pure interns + senior/6+)
   experience_min_years: 1
   experience_max_years: 5
+  # Daily digest (--digest) looks back this many hours
+  digest_posted_max_hours: 48
 
 request_timeout: 30
 user_agent: "JobOpeningMonitor/1.0 (+personal job alert bot)"
