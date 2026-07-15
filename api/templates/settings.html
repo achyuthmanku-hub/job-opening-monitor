@@ -7,8 +7,11 @@
 <div class="card" style="margin:1rem 0; border-color:#3b82f6;">
   <h3 style="margin-top:0;">Share with friends</h3>
   <ol class="muted">
-    <li>Import companies: <code>python scripts/import_company_pack.py fortune500.yaml</code></li>
-    <li>Scan jobs: <code>curl -X POST http://localhost:8000/jobs/scan</code> (or <code>python run.py</code>)</li>
+    <li>Import companies:
+      <code>python scripts/import_company_pack.py fortune500.yaml</code>
+      then <code>expanded_ats.yaml</code> (200+ ATS boards)</li>
+    <li>Experience filter is set to <strong>1–5 years</strong> in <code>config.yaml</code> (skips interns + senior/6+)</li>
+    <li>Scan jobs: <code>curl -X POST http://localhost:8000/jobs/scan</code> or <code>python scripts/seed_job_pool.py</code></li>
     <li>Embed jobs once: <code>curl -X POST "http://localhost:8000/jobs/embed"</code></li>
     <li>Friends open <a href="/ui/upload">/ui/upload</a>, upload their resume, and get personal matches.</li>
   </ol>

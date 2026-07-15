@@ -154,9 +154,14 @@ SENIOR_TITLE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
+INTERN_TITLE_PATTERN = re.compile(
+    r"\b(intern|internship|co-?op)\b",
+    re.IGNORECASE,
+)
+
 ENTRY_TITLE_PATTERN = re.compile(
     r"\b("
-    r"junior|jr\.?|entry[- ]level|associate|intern|new grad|new graduate|"
+    r"junior|jr\.?|entry[- ]level|associate|new grad|new graduate|"
     r"early career|graduate|software engineer i\b|engineer i\b|sde i\b|"
     r"software developer i\b|level 1|level 2|l3|l4"
     r")\b",
@@ -197,15 +202,20 @@ def matches_experience(
     max_years: int = 5,
     extra_text: str = "",
 ) -> bool:
-    """Keep roles targeting roughly 0-5 years experience; skip senior/high-min roles."""
+    """Keep roles targeting roughly min–max years experience; skip senior/high-min roles."""
     text = _experience_text(job, extra_text)
     title = job.title or ""
 
-    if ENTRY_TITLE_PATTERN.search(title):
-        return True
+    # Pure internships are 0-year tracks — drop them when the floor is 1+.
+    if min_years >= 1 and INTERN_TITLE_PATTERN.search(title):
+        return False
 
     if SENIOR_TITLE_PATTERN.search(title):
         return False
+
+    # Junior / new-grad / early-career titles fit a 1–5 year band.
+    if ENTRY_TITLE_PATTERN.search(title):
+        return True
 
     required_min = _minimum_years_required(text)
     if required_min is not None:

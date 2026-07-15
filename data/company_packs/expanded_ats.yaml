@@ -1,0 +1,675 @@
+pack: expanded_ats
+description: >
+  Extra high-signal ATS companies (Greenhouse / Ashby / Lever) beyond the
+  Fortune 500 and us_tech packs. Prefer these boards — they scrape reliably.
+
+companies:
+  # --- Product / SaaS ---
+  - name: Atlassian
+    sources:
+      - type: greenhouse
+        slug: atlassian
+  - name: HubSpot
+    sources:
+      - type: greenhouse
+        slug: hubspot
+  - name: Zendesk
+    sources:
+      - type: greenhouse
+        slug: zendesk
+  - name: Twilio
+    sources:
+      - type: greenhouse
+        slug: twilio
+  - name: HashiCorp
+    sources:
+      - type: greenhouse
+        slug: hashicorp
+  - name: GitLab
+    sources:
+      - type: greenhouse
+        slug: gitlab
+  - name: Elastic
+    sources:
+      - type: greenhouse
+        slug: elastic
+  - name: Confluent
+    sources:
+      - type: greenhouse
+        slug: confluent
+  - name: Databricks
+    sources:
+      - type: greenhouse
+        slug: databricks
+  - name: Snowflake
+    sources:
+      - type: greenhouse
+        slug: snowflakeinc
+  - name: dbt Labs
+    sources:
+      - type: greenhouse
+        slug: dbtlabs
+  - name: Census
+    sources:
+      - type: ashby
+        slug: census
+  - name: Amplitude
+    sources:
+      - type: greenhouse
+        slug: amplitude
+  - name: Mixpanel
+    sources:
+      - type: greenhouse
+        slug: mixpanel
+  - name: Segment
+    sources:
+      - type: greenhouse
+        slug: segment
+  - name: LaunchDarkly
+    sources:
+      - type: greenhouse
+        slug: launchdarkly
+  - name: Sentry
+    sources:
+      - type: greenhouse
+        slug: sentry
+  - name: Datadog
+    sources:
+      - type: greenhouse
+        slug: datadog
+  - name: New Relic
+    sources:
+      - type: greenhouse
+        slug: newrelic
+  - name: PagerDuty
+    sources:
+      - type: greenhouse
+        slug: pagerduty
+  - name: Splunk
+    sources:
+      - type: greenhouse
+        slug: splunk
+  - name: Sumo Logic
+    sources:
+      - type: greenhouse
+        slug: sumologic
+  - name: CrowdStrike
+    sources:
+      - type: greenhouse
+        slug: crowdstrike
+  - name: Cloudflare
+    sources:
+      - type: greenhouse
+        slug: cloudflare
+  - name: Fastly
+    sources:
+      - type: greenhouse
+        slug: fastly
+  - name: Vercel
+    sources:
+      - type: ashby
+        slug: vercel
+  - name: Netlify
+    sources:
+      - type: greenhouse
+        slug: netlify
+  - name: Heroku
+    sources:
+      - type: greenhouse
+        slug: heroku
+  - name: DigitalOcean
+    sources:
+      - type: greenhouse
+        slug: digitalocean
+  - name: MongoDB
+    sources:
+      - type: greenhouse
+        slug: mongodb
+  - name: Redis
+    sources:
+      - type: greenhouse
+        slug: redis
+  - name: Cockroach Labs
+    sources:
+      - type: greenhouse
+        slug: cockroachlabs
+  - name: PlanetScale
+    sources:
+      - type: ashby
+        slug: planetscale
+  - name: Supabase
+    sources:
+      - type: ashby
+        slug: supabase
+  - name: Neon
+    sources:
+      - type: ashby
+        slug: neon
+  - name: Temporal
+    sources:
+      - type: ashby
+        slug: temporal
+  - name: Pulumi
+    sources:
+      - type: greenhouse
+        slug: pulumi
+  - name: Anyscale
+    sources:
+      - type: greenhouse
+        slug: anyscale
+  - name: Hugging Face
+    sources:
+      - type: greenhouse
+        slug: huggingface
+  - name: Scale AI
+    sources:
+      - type: greenhouse
+        slug: scaleai
+  - name: Adept
+    sources:
+      - type: ashby
+        slug: adept
+  - name: Anthropic
+    sources:
+      - type: greenhouse
+        slug: anthropic
+  - name: OpenAI
+    sources:
+      - type: ashby
+        slug: openai
+  - name: Perplexity
+    sources:
+      - type: ashby
+        slug: perplexityai
+  - name: Cohere
+    sources:
+      - type: ashby
+        slug: cohere
+  - name: Mistral AI
+    sources:
+      - type: ashby
+        slug: mistral
+  - name: LangChain
+    sources:
+      - type: ashby
+        slug: langchain
+  - name: Weights & Biases
+    sources:
+      - type: greenhouse
+        slug: weightsandbiases
+  - name: Together AI
+    sources:
+      - type: ashby
+        slug: togetherai
+
+  # --- Consumer / marketplaces ---
+  - name: Airbnb
+    sources:
+      - type: greenhouse
+        slug: airbnb
+  - name: Lyft
+    sources:
+      - type: greenhouse
+        slug: lyft
+  - name: Instacart
+    sources:
+      - type: greenhouse
+        slug: instacart
+  - name: DoorDash
+    sources:
+      - type: linkedin
+        url: https://www.linkedin.com/company/doordash/jobs
+  - name: Uber
+    sources:
+      - type: linkedin
+        url: https://www.linkedin.com/company/uber/jobs
+  - name: Reddit
+    sources:
+      - type: greenhouse
+        slug: reddit
+  - name: Pinterest
+    sources:
+      - type: greenhouse
+        slug: pinterest
+  - name: Discord
+    sources:
+      - type: greenhouse
+        slug: discord
+  - name: Slack
+    sources:
+      - type: greenhouse
+        slug: slack
+  - name: Notion
+    sources:
+      - type: ashby
+        slug: notion
+  - name: Figma
+    sources:
+      - type: greenhouse
+        slug: figma
+  - name: Canva
+    sources:
+      - type: greenhouse
+        slug: canva
+  - name: Miro
+    sources:
+      - type: greenhouse
+        slug: miro
+  - name: Asana
+    sources:
+      - type: greenhouse
+        slug: asana
+  - name: Monday.com
+    sources:
+      - type: greenhouse
+        slug: monday
+  - name: Airtable
+    sources:
+      - type: greenhouse
+        slug: airtable
+  - name: Coda
+    sources:
+      - type: greenhouse
+        slug: coda
+  - name: Dropbox
+    sources:
+      - type: greenhouse
+        slug: dropbox
+  - name: Box
+    sources:
+      - type: greenhouse
+        slug: boxinc
+  - name: Zoom
+    sources:
+      - type: greenhouse
+        slug: zoom
+  - name: Twitch
+    sources:
+      - type: greenhouse
+        slug: twitch
+  - name: Roblox
+    sources:
+      - type: greenhouse
+        slug: roblox
+  - name: Unity
+    sources:
+      - type: greenhouse
+        slug: unity3d
+  - name: Epic Games
+    sources:
+      - type: greenhouse
+        slug: epicgames
+  - name: Riot Games
+    sources:
+      - type: greenhouse
+        slug: riotgames
+  - name: Electronic Arts
+    sources:
+      - type: greenhouse
+        slug: electronicarts
+
+  # --- Fintech / payments ---
+  - name: Stripe
+    sources:
+      - type: greenhouse
+        slug: stripe
+  - name: Square
+    sources:
+      - type: greenhouse
+        slug: square
+  - name: Block
+    sources:
+      - type: greenhouse
+        slug: block
+  - name: Coinbase
+    sources:
+      - type: greenhouse
+        slug: coinbase
+  - name: Robinhood
+    sources:
+      - type: greenhouse
+        slug: robinhood
+  - name: Affirm
+    sources:
+      - type: greenhouse
+        slug: affirm
+  - name: Brex
+    sources:
+      - type: greenhouse
+        slug: brex
+  - name: Ramp
+    sources:
+      - type: ashby
+        slug: ramp
+  - name: Plaid
+    sources:
+      - type: lever
+        slug: plaid
+  - name: Chime
+    sources:
+      - type: greenhouse
+        slug: chime
+  - name: SoFi
+    sources:
+      - type: greenhouse
+        slug: sofi
+  - name: Mercury
+    sources:
+      - type: ashby
+        slug: mercury
+  - name: Wise
+    sources:
+      - type: greenhouse
+        slug: wise
+  - name: Klarna
+    sources:
+      - type: greenhouse
+        slug: klarna
+  - name: Checkout.com
+    sources:
+      - type: greenhouse
+        slug: checkout
+  - name: Marqeta
+    sources:
+      - type: greenhouse
+        slug: marqeta
+  - name: Toast
+    sources:
+      - type: greenhouse
+        slug: toasttab
+  - name: Bill.com
+    sources:
+      - type: greenhouse
+        slug: billcom
+  - name: NerdWallet
+    sources:
+      - type: greenhouse
+        slug: nerdwallet
+  - name: Credit Karma
+    sources:
+      - type: greenhouse
+        slug: creditkarma
+
+  # --- Dev tools / security ---
+  - name: GitHub
+    sources:
+      - type: greenhouse
+        slug: github
+  - name: Sourcegraph
+    sources:
+      - type: greenhouse
+        slug: sourcegraph
+  - name: Cursor
+    sources:
+      - type: ashby
+        slug: cursor
+  - name: Replicate
+    sources:
+      - type: ashby
+        slug: replicate
+  - name: Okta
+    sources:
+      - type: greenhouse
+        slug: okta
+  - name: Auth0
+    sources:
+      - type: greenhouse
+        slug: auth0
+  - name: 1Password
+    sources:
+      - type: greenhouse
+        slug: 1password
+  - name: Duo Security
+    sources:
+      - type: greenhouse
+        slug: duosecurity
+  - name: Snyk
+    sources:
+      - type: greenhouse
+        slug: snyk
+  - name: Wiz
+    sources:
+      - type: ashby
+        slug: wiz
+  - name: Lacework
+    sources:
+      - type: greenhouse
+        slug: lacework
+  - name: Cloudflare Workers
+    sources:
+      - type: greenhouse
+        slug: cloudflare
+  - name: Tailscale
+    sources:
+      - type: ashby
+        slug: tailscale
+  - name: Postman
+    sources:
+      - type: greenhouse
+        slug: postman
+  - name: Grafana Labs
+    sources:
+      - type: greenhouse
+        slug: grafanalabs
+  - name: ClickHouse
+    sources:
+      - type: greenhouse
+        slug: clickhouse
+  - name: Airbyte
+    sources:
+      - type: ashby
+        slug: airbyte
+  - name: Fivetran
+    sources:
+      - type: greenhouse
+        slug: fivetran
+  - name: Hex
+    sources:
+      - type: ashby
+        slug: hex
+  - name: Mode Analytics
+    sources:
+      - type: greenhouse
+        slug: modeanalytics
+  - name: Looker
+    sources:
+      - type: greenhouse
+        slug: looker
+  - name: ThoughtSpot
+    sources:
+      - type: greenhouse
+        slug: thoughtspot
+
+  # --- Health / bio / other ---
+  - name: Tempus
+    sources:
+      - type: greenhouse
+        slug: tempus
+  - name: Color Health
+    sources:
+      - type: greenhouse
+        slug: color
+  - name: Oscar Health
+    sources:
+      - type: greenhouse
+        slug: oscar
+  - name: Ro
+    sources:
+      - type: greenhouse
+        slug: ro
+  - name: Modern Health
+    sources:
+      - type: ashby
+        slug: modernhealth
+  - name: Headspace
+    sources:
+      - type: greenhouse
+        slug: headspace
+  - name: Calm
+    sources:
+      - type: greenhouse
+        slug: calm
+  - name: Duolingo
+    sources:
+      - type: greenhouse
+        slug: duolingo
+  - name: Coursera
+    sources:
+      - type: greenhouse
+        slug: coursera
+  - name: Chegg
+    sources:
+      - type: greenhouse
+        slug: chegg
+  - name: Grammarly
+    sources:
+      - type: greenhouse
+        slug: grammarly
+  - name: Notion Labs
+    sources:
+      - type: ashby
+        slug: notion
+  - name: Linear
+    sources:
+      - type: ashby
+        slug: linear
+  - name: Rippling
+    sources:
+      - type: greenhouse
+        slug: rippling
+  - name: Deel
+    sources:
+      - type: ashby
+        slug: deel
+  - name: Remote.com
+    sources:
+      - type: ashby
+        slug: remotecom
+  - name: Gusto
+    sources:
+      - type: greenhouse
+        slug: gusto
+  - name: Lattice
+    sources:
+      - type: greenhouse
+        slug: lattice
+  - name: Culture Amp
+    sources:
+      - type: greenhouse
+        slug: cultureamp
+  - name: Lever
+    sources:
+      - type: lever
+        slug: lever
+  - name: Greenhouse Soft
+    sources:
+      - type: greenhouse
+        slug: greenhouse
+  - name: Ashby
+    sources:
+      - type: ashby
+        slug: ashby
+  - name: Calendly
+    sources:
+      - type: greenhouse
+        slug: calendly
+  - name: Loom
+    sources:
+      - type: greenhouse
+        slug: loom
+  - name: ZoomInfo
+    sources:
+      - type: greenhouse
+        slug: zoominfo
+  - name: Braze
+    sources:
+      - type: greenhouse
+        slug: braze
+  - name: Iterable
+    sources:
+      - type: greenhouse
+        slug: iterable
+  - name: Klaviyo
+    sources:
+      - type: greenhouse
+        slug: klaviyo
+  - name: Sprinklr
+    sources:
+      - type: greenhouse
+        slug: sprinklr
+  - name: Yelp
+    sources:
+      - type: greenhouse
+        slug: yelp
+  - name: TripAdvisor
+    sources:
+      - type: greenhouse
+        slug: tripadvisor
+  - name: Booking.com
+    sources:
+      - type: greenhouse
+        slug: bookingcom
+  - name: Expedia Group
+    sources:
+      - type: career_portal
+        url: https://careers.expediagroup.com/jobs/?keyword=software%20engineer
+  - name: Airbnb Experiences
+    sources:
+      - type: greenhouse
+        slug: airbnb
+  - name: Etsy
+    sources:
+      - type: greenhouse
+        slug: etsy
+  - name: Shopify
+    sources:
+      - type: greenhouse
+        slug: shopify
+  - name: Squared
+    sources:
+      - type: greenhouse
+        slug: square
+  - name: Palantir
+    sources:
+      - type: greenhouse
+        slug: palantirtech
+  - name: Anduril
+    sources:
+      - type: greenhouse
+        slug: andurilindustries
+  - name: SpaceX
+    sources:
+      - type: greenhouse
+        slug: spacex
+  - name: Tesla
+    sources:
+      - type: greenhouse
+        slug: tesla
+  - name: Rivian
+    sources:
+      - type: greenhouse
+        slug: rivian
+  - name: Lucid Motors
+    sources:
+      - type: greenhouse
+        slug: lucidmotors
+  - name: Cruise
+    sources:
+      - type: greenhouse
+        slug: cruise
+  - name: Waymo
+    sources:
+      - type: greenhouse
+        slug: waymo
+  - name: Aurora
+    sources:
+      - type: greenhouse
+        slug: aurorainnovation
+  - name: Zipline
+    sources:
+      - type: greenhouse
+        slug: flyzipline
+  - name: Nuro
+    sources:
+      - type: greenhouse
+        slug: nuro

@@ -12,18 +12,24 @@ Built as a production-style backend system: FastAPI API, PostgreSQL, Celery work
 
 Jobs are scraped **once** into a shared pool. Each person uploads their own resume and gets a personal ranked list.
 
-1. **You (operator):** import Fortune 500 pack → scan → embed jobs  
+1. **You (operator):** import company packs → scan → embed jobs  
 2. **Friends:** open the site → **Upload resume** → see matches  
 
 ```bash
 python scripts/import_company_pack.py fortune500.yaml
+python scripts/import_company_pack.py expanded_ats.yaml
 # start API: python run_api.py
 curl -X POST http://localhost:8000/jobs/scan
 curl -X POST "http://localhost:8000/jobs/embed"
 # Friends visit: http://localhost:8000/ui/upload
 ```
 
-The Fortune 500 pack (`data/company_packs/fortune500.yaml`) covers **100+** major US employers with public ATS boards (not every F500 site is scrapeable).
+Company packs (`data/company_packs/`):
+- `fortune500.yaml` — major US employers  
+- `expanded_ats.yaml` — 100+ extra Greenhouse / Ashby / Lever boards  
+- `us_tech.yaml` / `fintech.yaml` — smaller starter packs  
+
+**Experience filter (config):** `experience_min_years: 1` and `experience_max_years: 5` — keeps early/mid roles, drops pure internships and senior / 6+ year postings.
 
 ---
 

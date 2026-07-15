@@ -13,7 +13,8 @@ filters:
   posted_max_hours: 25               # At most 25 hours ago (when post time exists)
   allow_missing_posted_time: true    # Still alert on career portals without a post date
   experience_filter_enabled: true
-  experience_min_years: 0
+  # Keep mid/early roles only: about 1–5 years (skips pure interns + senior/6+)
+  experience_min_years: 1
   experience_max_years: 5
 
 request_timeout: 30

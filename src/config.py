@@ -47,7 +47,7 @@ def load_settings() -> dict:
         "posted_max_hours": float(filters.get("posted_max_hours", 5)),
         "allow_missing_posted_time": filters.get("allow_missing_posted_time", True),
         "experience_filter_enabled": filters.get("experience_filter_enabled", True),
-        "experience_min_years": _parse_year_value(filters.get("experience_min_years"), 0),
+        "experience_min_years": _parse_year_value(filters.get("experience_min_years"), 1),
         "experience_max_years": _parse_year_value(filters.get("experience_max_years"), 5),
         "request_timeout": config.get("request_timeout", 30),
         "user_agent": config.get(
