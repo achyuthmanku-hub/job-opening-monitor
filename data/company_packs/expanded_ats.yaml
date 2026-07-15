@@ -1,34 +1,85 @@
 pack: expanded_ats
 description: >
-  Extra high-signal ATS companies (Greenhouse / Ashby / Lever) beyond the
-  Fortune 500 and us_tech packs. Prefer these boards — they scrape reliably.
+  Additional high-volume tech / growth companies with public Greenhouse, Ashby,
+  Lever, or Workday boards. Merge with fortune500.yaml for broader coverage.
 
 companies:
-  # --- Product / SaaS ---
-  - name: Atlassian
+  - name: OpenAI
+    sources:
+      - type: ashby
+        slug: openai
+  - name: Anthropic
     sources:
       - type: greenhouse
-        slug: atlassian
-  - name: HubSpot
+        slug: anthropic
+  - name: Notion
+    sources:
+      - type: ashby
+        slug: notion
+  - name: Linear
+    sources:
+      - type: ashby
+        slug: linear
+  - name: Figma
     sources:
       - type: greenhouse
-        slug: hubspot
-  - name: Zendesk
+        slug: figma
+  - name: Discord
     sources:
       - type: greenhouse
-        slug: zendesk
-  - name: Twilio
+        slug: discord
+  - name: Ramp
+    sources:
+      - type: ashby
+        slug: ramp
+  - name: Brex
     sources:
       - type: greenhouse
-        slug: twilio
-  - name: HashiCorp
+        slug: brex
+  - name: Plaid
+    sources:
+      - type: lever
+        slug: plaid
+  - name: Mercury
+    sources:
+      - type: ashby
+        slug: mercury
+  - name: Chime
     sources:
       - type: greenhouse
-        slug: hashicorp
+        slug: chime
+  - name: SoFi
+    sources:
+      - type: greenhouse
+        slug: sofi
+  - name: Klarna
+    sources:
+      - type: greenhouse
+        slug: klarna
+  - name: Wise
+    sources:
+      - type: greenhouse
+        slug: transferwise
+  - name: Gusto
+    sources:
+      - type: greenhouse
+        slug: gusto
+  - name: Rippling
+    sources:
+      - type: ashby
+        slug: rippling
+  - name: Toast
+    sources:
+      - type: greenhouse
+        slug: toast
   - name: GitLab
     sources:
       - type: greenhouse
         slug: gitlab
+  - name: HashiCorp
+    sources:
+      - type: greenhouse
+        slug: hashicorp
   - name: Elastic
     sources:
       - type: greenhouse
@@ -41,286 +92,86 @@ companies:
     sources:
       - type: greenhouse
         slug: databricks
-  - name: Snowflake
-    sources:
-      - type: greenhouse
-        slug: snowflakeinc
-  - name: dbt Labs
-    sources:
-      - type: greenhouse
-        slug: dbtlabs
-  - name: Census
-    sources:
-      - type: ashby
-        slug: census
-  - name: Amplitude
-    sources:
-      - type: greenhouse
-        slug: amplitude
-  - name: Mixpanel
-    sources:
-      - type: greenhouse
-        slug: mixpanel
-  - name: Segment
-    sources:
-      - type: greenhouse
-        slug: segment
-  - name: LaunchDarkly
-    sources:
-      - type: greenhouse
-        slug: launchdarkly
-  - name: Sentry
-    sources:
-      - type: greenhouse
-        slug: sentry
-  - name: Datadog
-    sources:
-      - type: greenhouse
-        slug: datadog
-  - name: New Relic
-    sources:
-      - type: greenhouse
-        slug: newrelic
-  - name: PagerDuty
-    sources:
-      - type: greenhouse
-        slug: pagerduty
-  - name: Splunk
-    sources:
-      - type: greenhouse
-        slug: splunk
-  - name: Sumo Logic
-    sources:
-      - type: greenhouse
-        slug: sumologic
-  - name: CrowdStrike
-    sources:
-      - type: greenhouse
-        slug: crowdstrike
-  - name: Cloudflare
-    sources:
-      - type: greenhouse
-        slug: cloudflare
-  - name: Fastly
-    sources:
-      - type: greenhouse
-        slug: fastly
-  - name: Vercel
-    sources:
-      - type: ashby
-        slug: vercel
-  - name: Netlify
-    sources:
-      - type: greenhouse
-        slug: netlify
-  - name: Heroku
-    sources:
-      - type: greenhouse
-        slug: heroku
-  - name: DigitalOcean
-    sources:
-      - type: greenhouse
-        slug: digitalocean
-  - name: MongoDB
-    sources:
-      - type: greenhouse
-        slug: mongodb
-  - name: Redis
-    sources:
-      - type: greenhouse
-        slug: redis
-  - name: Cockroach Labs
-    sources:
-      - type: greenhouse
-        slug: cockroachlabs
-  - name: PlanetScale
-    sources:
-      - type: ashby
-        slug: planetscale
-  - name: Supabase
-    sources:
-      - type: ashby
-        slug: supabase
-  - name: Neon
-    sources:
-      - type: ashby
-        slug: neon
-  - name: Temporal
-    sources:
-      - type: ashby
-        slug: temporal
-  - name: Pulumi
-    sources:
-      - type: greenhouse
-        slug: pulumi
-  - name: Anyscale
-    sources:
-      - type: greenhouse
-        slug: anyscale
-  - name: Hugging Face
-    sources:
-      - type: greenhouse
-        slug: huggingface
-  - name: Scale AI
-    sources:
-      - type: greenhouse
-        slug: scaleai
-  - name: Adept
-    sources:
-      - type: ashby
-        slug: adept
-  - name: Anthropic
-    sources:
-      - type: greenhouse
-        slug: anthropic
-  - name: OpenAI
-    sources:
-      - type: ashby
-        slug: openai
-  - name: Perplexity
-    sources:
-      - type: ashby
-        slug: perplexityai
-  - name: Cohere
-    sources:
-      - type: ashby
-        slug: cohere
-  - name: Mistral AI
-    sources:
-      - type: ashby
-        slug: mistral
-  - name: LangChain
-    sources:
-      - type: ashby
-        slug: langchain
-  - name: Weights & Biases
-    sources:
-      - type: greenhouse
-        slug: weightsandbiases
-  - name: Together AI
-    sources:
-      - type: ashby
-        slug: togetherai
-
-  # --- Consumer / marketplaces ---
-  - name: Airbnb
-    sources:
-      - type: greenhouse
-        slug: airbnb
-  - name: Lyft
-    sources:
-      - type: greenhouse
-        slug: lyft
-  - name: Instacart
-    sources:
-      - type: greenhouse
-        slug: instacart
-  - name: DoorDash
-    sources:
-      - type: linkedin
-        url: https://www.linkedin.com/company/doordash/jobs
-  - name: Uber
-    sources:
-      - type: linkedin
-        url: https://www.linkedin.com/company/uber/jobs
-  - name: Reddit
-    sources:
-      - type: greenhouse
-        slug: reddit
-  - name: Pinterest
-    sources:
-      - type: greenhouse
-        slug: pinterest
-  - name: Discord
-    sources:
-      - type: greenhouse
-        slug: discord
-  - name: Slack
-    sources:
-      - type: greenhouse
-        slug: slack
-  - name: Notion
-    sources:
-      - type: ashby
-        slug: notion
-  - name: Figma
-    sources:
-      - type: greenhouse
-        slug: figma
-  - name: Canva
-    sources:
-      - type: greenhouse
-        slug: canva
-  - name: Miro
-    sources:
-      - type: greenhouse
-        slug: miro
   - name: Asana
     sources:
       - type: greenhouse
         slug: asana
-  - name: Monday.com
-    sources:
-      - type: greenhouse
-        slug: monday
   - name: Airtable
     sources:
       - type: greenhouse
         slug: airtable
-  - name: Coda
+  - name: Canva
+    sources:
+      - type: lever
+        slug: canva
+  - name: Duolingo
     sources:
       - type: greenhouse
-        slug: coda
-  - name: Dropbox
+        slug: duolingo
+  - name: Grammarly
     sources:
       - type: greenhouse
-        slug: dropbox
-  - name: Box
+        slug: grammarly
+  - name: HubSpot
     sources:
       - type: greenhouse
-        slug: boxinc
-  - name: Zoom
+        slug: hubspot
+  - name: Zendesk
     sources:
       - type: greenhouse
-        slug: zoom
-  - name: Twitch
+        slug: zendesk
+  - name: Atlassian
     sources:
       - type: greenhouse
-        slug: twitch
-  - name: Roblox
+        slug: atlassian
+  - name: Shopify
     sources:
       - type: greenhouse
-        slug: roblox
-  - name: Unity
-    sources:
-      - type: greenhouse
-        slug: unity3d
-  - name: Epic Games
-    sources:
-      - type: greenhouse
-        slug: epicgames
-  - name: Riot Games
-    sources:
-      - type: greenhouse
-        slug: riotgames
-  - name: Electronic Arts
-    sources:
-      - type: greenhouse
-        slug: electronicarts
-
-  # --- Fintech / payments ---
-  - name: Stripe
-    sources:
-      - type: greenhouse
-        slug: stripe
+        slug: shopify
   - name: Square
     sources:
       - type: greenhouse
         slug: square
-  - name: Block
+  - name: Twilio
     sources:
       - type: greenhouse
-        slug: block
+        slug: twilio
+  - name: Okta
+    sources:
+      - type: greenhouse
+        slug: okta
+  - name: Digits
+    sources:
+      - type: ashby
+        slug: digits
+  - name: Scale AI
+    sources:
+      - type: greenhouse
+        slug: scaleai
+  - name: Anduril
+    sources:
+      - type: greenhouse
+        slug: andurilindustries
+  - name: Samsara
+    sources:
+      - type: greenhouse
+        slug: samsara
+  - name: Flexport
+    sources:
+      - type: greenhouse
+        slug: flexport
+  - name: Instacart
+    sources:
+      - type: greenhouse
+        slug: instacart
+  - name: Faire
+    sources:
+      - type: greenhouse
+        slug: faire
+  - name: Affirm
+    sources:
+      - type: greenhouse
+        slug: affirm
   - name: Coinbase
     sources:
       - type: greenhouse
@@ -329,322 +180,146 @@ companies:
     sources:
       - type: greenhouse
         slug: robinhood
-  - name: Affirm
-    sources:
-      - type: greenhouse
-        slug: affirm
-  - name: Brex
-    sources:
-      - type: greenhouse
-        slug: brex
-  - name: Ramp
-    sources:
-      - type: ashby
-        slug: ramp
-  - name: Plaid
-    sources:
-      - type: lever
-        slug: plaid
-  - name: Chime
-    sources:
-      - type: greenhouse
-        slug: chime
-  - name: SoFi
-    sources:
-      - type: greenhouse
-        slug: sofi
-  - name: Mercury
-    sources:
-      - type: ashby
-        slug: mercury
-  - name: Wise
-    sources:
-      - type: greenhouse
-        slug: wise
-  - name: Klarna
-    sources:
-      - type: greenhouse
-        slug: klarna
-  - name: Checkout.com
-    sources:
-      - type: greenhouse
-        slug: checkout
-  - name: Marqeta
-    sources:
-      - type: greenhouse
-        slug: marqeta
-  - name: Toast
-    sources:
-      - type: greenhouse
-        slug: toasttab
-  - name: Bill.com
-    sources:
-      - type: greenhouse
-        slug: billcom
   - name: NerdWallet
     sources:
       - type: greenhouse
         slug: nerdwallet
-  - name: Credit Karma
+  - name: Thumbtack
     sources:
       - type: greenhouse
-        slug: creditkarma
-
-  # --- Dev tools / security ---
-  - name: GitHub
+        slug: thumbtack
+  - name: Carta
     sources:
       - type: greenhouse
-        slug: github
-  - name: Sourcegraph
+        slug: carta
+  - name: Patreon
     sources:
       - type: greenhouse
-        slug: sourcegraph
-  - name: Cursor
+        slug: patreon
+  - name: Vercel
     sources:
       - type: ashby
-        slug: cursor
-  - name: Replicate
-    sources:
-      - type: ashby
-        slug: replicate
-  - name: Okta
-    sources:
-      - type: greenhouse
-        slug: okta
-  - name: Auth0
-    sources:
-      - type: greenhouse
-        slug: auth0
-  - name: 1Password
-    sources:
-      - type: greenhouse
-        slug: 1password
-  - name: Duo Security
-    sources:
-      - type: greenhouse
-        slug: duosecurity
-  - name: Snyk
-    sources:
-      - type: greenhouse
-        slug: snyk
-  - name: Wiz
-    sources:
-      - type: ashby
-        slug: wiz
-  - name: Lacework
-    sources:
-      - type: greenhouse
-        slug: lacework
-  - name: Cloudflare Workers
+        slug: vercel
+  - name: Cloudflare
     sources:
       - type: greenhouse
         slug: cloudflare
-  - name: Tailscale
-    sources:
-      - type: ashby
-        slug: tailscale
-  - name: Postman
+  - name: Datadog
     sources:
       - type: greenhouse
-        slug: postman
-  - name: Grafana Labs
+        slug: datadog
+  - name: MongoDB
     sources:
       - type: greenhouse
-        slug: grafanalabs
-  - name: ClickHouse
+        slug: mongodb
+  - name: Dropbox
     sources:
       - type: greenhouse
-        slug: clickhouse
-  - name: Airbyte
-    sources:
-      - type: ashby
-        slug: airbyte
-  - name: Fivetran
+        slug: dropbox
+  - name: Pinterest
     sources:
       - type: greenhouse
-        slug: fivetran
-  - name: Hex
-    sources:
-      - type: ashby
-        slug: hex
-  - name: Mode Analytics
+        slug: pinterest
+  - name: Reddit
     sources:
       - type: greenhouse
-        slug: modeanalytics
-  - name: Looker
+        slug: reddit
+  - name: Airbnb
     sources:
       - type: greenhouse
-        slug: looker
-  - name: ThoughtSpot
+        slug: airbnb
+  - name: Lyft
     sources:
       - type: greenhouse
-        slug: thoughtspot
-
-  # --- Health / bio / other ---
-  - name: Tempus
+        slug: lyft
+  - name: Stripe
     sources:
       - type: greenhouse
-        slug: tempus
-  - name: Color Health
+        slug: stripe
+  - name: Block
     sources:
       - type: greenhouse
-        slug: color
-  - name: Oscar Health
+        slug: block
+  - name: LinkedIn
     sources:
       - type: greenhouse
-        slug: oscar
-  - name: Ro
+        slug: linkedin
+  - name: Spotify
     sources:
-      - type: greenhouse
-        slug: ro
-  - name: Modern Health
-    sources:
-      - type: ashby
-        slug: modernhealth
-  - name: Headspace
-    sources:
-      - type: greenhouse
-        slug: headspace
-  - name: Calm
-    sources:
-      - type: greenhouse
-        slug: calm
-  - name: Duolingo
-    sources:
-      - type: greenhouse
-        slug: duolingo
+      - type: lever
+        slug: spotify
   - name: Coursera
     sources:
       - type: greenhouse
         slug: coursera
-  - name: Chegg
+  - name: Khan Academy
     sources:
       - type: greenhouse
-        slug: chegg
-  - name: Grammarly
+        slug: khanacademy
+  - name: Cross River
     sources:
       - type: greenhouse
-        slug: grammarly
-  - name: Notion Labs
+        slug: crossriver
+  - name: Marqeta
+    sources:
+      - type: greenhouse
+        slug: marqeta
+  - name: Blend
+    sources:
+      - type: greenhouse
+        slug: blend
+  - name: Onto
     sources:
       - type: ashby
-        slug: notion
-  - name: Linear
+        slug: onto
+  - name: Hex
     sources:
       - type: ashby
-        slug: linear
-  - name: Rippling
+        slug: hex
+  - name: Retool
     sources:
       - type: greenhouse
-        slug: rippling
-  - name: Deel
-    sources:
-      - type: ashby
-        slug: deel
-  - name: Remote.com
-    sources:
-      - type: ashby
-        slug: remotecom
-  - name: Gusto
+        slug: retool
+  - name: Airbyte
     sources:
       - type: greenhouse
-        slug: gusto
-  - name: Lattice
+        slug: airbyte
+  - name: dbt Labs
     sources:
       - type: greenhouse
-        slug: lattice
-  - name: Culture Amp
+        slug: dbtlabs
+  - name: Postman
     sources:
       - type: greenhouse
-        slug: cultureamp
-  - name: Lever
-    sources:
-      - type: lever
-        slug: lever
-  - name: Greenhouse Soft
+        slug: postman
+  - name: LaunchDarkly
     sources:
       - type: greenhouse
-        slug: greenhouse
-  - name: Ashby
-    sources:
-      - type: ashby
-        slug: ashby
-  - name: Calendly
+        slug: launchdarkly
+  - name: PagerDuty
     sources:
       - type: greenhouse
-        slug: calendly
-  - name: Loom
+        slug: pagerduty
+  - name: Splunk
     sources:
       - type: greenhouse
-        slug: loom
-  - name: ZoomInfo
+        slug: splunk
+  - name: Freshworks
     sources:
       - type: greenhouse
-        slug: zoominfo
-  - name: Braze
-    sources:
-      - type: greenhouse
-        slug: braze
-  - name: Iterable
-    sources:
-      - type: greenhouse
-        slug: iterable
-  - name: Klaviyo
-    sources:
-      - type: greenhouse
-        slug: klaviyo
+        slug: freshworks
   - name: Sprinklr
     sources:
       - type: greenhouse
         slug: sprinklr
-  - name: Yelp
+  - name: Zoox
     sources:
       - type: greenhouse
-        slug: yelp
-  - name: TripAdvisor
+        slug: zoox
+  - name: Cruise
     sources:
       - type: greenhouse
-        slug: tripadvisor
-  - name: Booking.com
-    sources:
-      - type: greenhouse
-        slug: bookingcom
-  - name: Expedia Group
-    sources:
-      - type: career_portal
-        url: https://careers.expediagroup.com/jobs/?keyword=software%20engineer
-  - name: Airbnb Experiences
-    sources:
-      - type: greenhouse
-        slug: airbnb
-  - name: Etsy
-    sources:
-      - type: greenhouse
-        slug: etsy
-  - name: Shopify
-    sources:
-      - type: greenhouse
-        slug: shopify
-  - name: Squared
-    sources:
-      - type: greenhouse
-        slug: square
-  - name: Palantir
-    sources:
-      - type: greenhouse
-        slug: palantirtech
-  - name: Anduril
-    sources:
-      - type: greenhouse
-        slug: andurilindustries
-  - name: SpaceX
-    sources:
-      - type: greenhouse
-        slug: spacex
-  - name: Tesla
-    sources:
-      - type: greenhouse
-        slug: tesla
+        slug: cruise
   - name: Rivian
     sources:
       - type: greenhouse
@@ -653,23 +328,1146 @@ companies:
     sources:
       - type: greenhouse
         slug: lucidmotors
-  - name: Cruise
+  - name: Wayfair
     sources:
       - type: greenhouse
-        slug: cruise
+        slug: wayfair
+  - name: Etsy
+    sources:
+      - type: greenhouse
+        slug: etsy
+  - name: Chewy
+    sources:
+      - type: greenhouse
+        slug: chewy
   - name: Waymo
     sources:
       - type: greenhouse
         slug: waymo
-  - name: Aurora
-    sources:
-      - type: greenhouse
-        slug: aurorainnovation
-  - name: Zipline
-    sources:
-      - type: greenhouse
-        slug: flyzipline
   - name: Nuro
     sources:
       - type: greenhouse
         slug: nuro
+  - name: Asimov
+    sources:
+      - type: ashby
+        slug: asimov
+  - name: Cohere
+    sources:
+      - type: ashby
+        slug: cohere
+  - name: Hugging Face
+    sources:
+      - type: greenhouse
+        slug: huggingface
+  - name: Adept
+    sources:
+      - type: ashby
+        slug: adept
+  - name: Figure
+    sources:
+      - type: ashby
+        slug: figure
+  - name: Physical Intelligence
+    sources:
+      - type: ashby
+        slug: physicalintelligence
+  - name: Perplexity
+    sources:
+      - type: ashby
+        slug: perplexity
+  - name: Cursor
+    sources:
+      - type: ashby
+        slug: cursor
+  - name: Anysphere
+    sources:
+      - type: ashby
+        slug: anysphere
+  - name: Zapier
+    sources:
+      - type: greenhouse
+        slug: zapier
+  - name: Miro
+    sources:
+      - type: greenhouse
+        slug: miro
+  - name: Loom
+    sources:
+      - type: greenhouse
+        slug: loom
+  - name: Calendly
+    sources:
+      - type: greenhouse
+        slug: calendly
+  - name: Intercom
+    sources:
+      - type: greenhouse
+        slug: intercom
+  - name: Braze
+    sources:
+      - type: greenhouse
+        slug: braze
+  - name: Segment
+    sources:
+      - type: greenhouse
+        slug: segment
+  - name: Amplitude
+    sources:
+      - type: greenhouse
+        slug: amplitude
+  - name: Mixpanel
+    sources:
+      - type: greenhouse
+        slug: mixpanel
+  - name: Smartsheet
+    sources:
+      - type: greenhouse
+        slug: smartsheet
+  - name: Box
+    sources:
+      - type: greenhouse
+        slug: boxinc
+  - name: DocuSign
+    sources:
+      - type: greenhouse
+        slug: docusign
+  - name: Bill.com
+    sources:
+      - type: greenhouse
+        slug: billcom
+  - name: Coupa
+    sources:
+      - type: greenhouse
+        slug: coupa
+  - name: ServiceTitan
+    sources:
+      - type: greenhouse
+        slug: servicetitan
+  - name: Procore
+    sources:
+      - type: greenhouse
+        slug: procore
+  - name: Guidewire
+    sources:
+      - type: greenhouse
+        slug: guidewire
+  - name: Nutanix
+    sources:
+      - type: greenhouse
+        slug: nutanix
+  - name: Pure Storage
+    sources:
+      - type: greenhouse
+        slug: purestorage
+  - name: Rubrik
+    sources:
+      - type: greenhouse
+        slug: rubrik
+  - name: Cohesity
+    sources:
+      - type: greenhouse
+        slug: cohesity
+  - name: SentinelOne
+    sources:
+      - type: greenhouse
+        slug: sentinelone
+  - name: CrowdStrike
+    sources:
+      - type: greenhouse
+        slug: crowdstrike
+  - name: Palo Alto Networks
+    sources:
+      - type: workday
+        tenant: paloaltonetworks
+        wd: wd5
+        site: External
+        query: software engineer
+  - name: Fortinet
+    sources:
+      - type: workday
+        tenant: fortinet
+        wd: wd1
+        site: Fortinet
+        query: software engineer
+  - name: Check Point
+    sources:
+      - type: greenhouse
+        slug: checkpoint
+  - name: Zscaler
+    sources:
+      - type: greenhouse
+        slug: zscaler
+  - name: Cloudflare Workers
+    sources:
+      - type: greenhouse
+        slug: cloudflare
+  - name: NetApp
+    sources:
+      - type: workday
+        tenant: netapp
+        wd: wd1
+        site: NetAppCareers
+        query: software engineer
+  - name: VMWare
+    sources:
+      - type: workday
+        tenant: vmware
+        wd: wd1
+        site: VMwareCareers
+        query: software engineer
+  - name: Autodesk
+    sources:
+      - type: workday
+        tenant: autodesk
+        wd: wd1
+        site: AutodeskCareers
+        query: software engineer
+  - name: Cadence
+    sources:
+      - type: workday
+        tenant: cadence
+        wd: wd1
+        site: CadenceCareers
+        query: software engineer
+  - name: Synopsys
+    sources:
+      - type: workday
+        tenant: synopsys
+        wd: wd1
+        site: SynopsysCareers
+        query: software engineer
+  - name: Micron
+    sources:
+      - type: workday
+        tenant: micron
+        wd: wd1
+        site: MicronCareers
+        query: software engineer
+  - name: AMD
+    sources:
+      - type: workday
+        tenant: amd
+        wd: wd5
+        site: AMDCareers
+        query: software engineer
+  - name: Western Digital
+    sources:
+      - type: workday
+        tenant: westerndigital
+        wd: wd1
+        site: WDCareers
+        query: software engineer
+  - name: Seagate
+    sources:
+      - type: workday
+        tenant: seagate
+        wd: wd1
+        site: SeagateCareers
+        query: software engineer
+  - name: Electronic Arts
+    sources:
+      - type: workday
+        tenant: ea
+        wd: wd1
+        site: EACareers
+        query: software engineer
+  - name: Activision Blizzard
+    sources:
+      - type: workday
+        tenant: activisionblizzard
+        wd: wd1
+        site: ABKCareers
+        query: software engineer
+  - name: Take-Two
+    sources:
+      - type: greenhouse
+        slug: take2games
+  - name: Unity
+    sources:
+      - type: greenhouse
+        slug: unity3d
+  - name: Epic Games
+    sources:
+      - type: greenhouse
+        slug: epicgames
+  - name: Roblox
+    sources:
+      - type: greenhouse
+        slug: roblox
+  - name: Niantic
+    sources:
+      - type: greenhouse
+        slug: niantic
+  - name: Riot Games
+    sources:
+      - type: greenhouse
+        slug: riotgames
+  - name: Bungie
+    sources:
+      - type: greenhouse
+        slug: bungie
+  - name: Bloomberg
+    sources:
+      - type: workday
+        tenant: bloomberg
+        wd: wd1
+        site: BloombergCareers
+        query: software engineer
+  - name: S&P Global
+    sources:
+      - type: workday
+        tenant: spglobal
+        wd: wd1
+        site: SPGCareers
+        query: software engineer
+  - name: Moody's
+    sources:
+      - type: workday
+        tenant: moodys
+        wd: wd1
+        site: MoodysCareers
+        query: software engineer
+  - name: Nasdaq
+    sources:
+      - type: workday
+        tenant: nasdaq
+        wd: wd1
+        site: NasdaqCareers
+        query: software engineer
+  - name: ICE
+    sources:
+      - type: workday
+        tenant: theice
+        wd: wd1
+        site: ICECareers
+        query: software engineer
+  - name: Morningstar
+    sources:
+      - type: greenhouse
+        slug: morningstar
+  - name: Two Sigma
+    sources:
+      - type: greenhouse
+        slug: twosigma
+  - name: Jane Street
+    sources:
+      - type: greenhouse
+        slug: janestreet
+  - name: Citadel
+    sources:
+      - type: greenhouse
+        slug: citadel
+  - name: Jump Trading
+    sources:
+      - type: greenhouse
+        slug: jumptradingllc
+  - name: HRT
+    sources:
+      - type: greenhouse
+        slug: hudsonrivertrading
+  - name: DRW
+    sources:
+      - type: greenhouse
+        slug: drwtrading
+  - name: Optiver
+    sources:
+      - type: greenhouse
+        slug: optiver
+  - name: IMC
+    sources:
+      - type: greenhouse
+        slug: imc
+  - name: Akuna Capital
+    sources:
+      - type: greenhouse
+        slug: akunacapital
+  - name: Susquehanna
+    sources:
+      - type: greenhouse
+        slug: sig
+  - name: Tower Research
+    sources:
+      - type: greenhouse
+        slug: tower-research-capital
+  - name: Capgemini
+    sources:
+      - type: workday
+        tenant: capgemini
+        wd: wd3
+        site: CapgeminiCareers
+        query: software engineer
+  - name: Wipro
+    sources:
+      - type: workday
+        tenant: wipro
+        wd: wd3
+        site: WiproCareers
+        query: software engineer
+  - name: HCLTech
+    sources:
+      - type: workday
+        tenant: hcltech
+        wd: wd3
+        site: HCLCareers
+        query: software engineer
+  - name: DXC
+    sources:
+      - type: workday
+        tenant: dxc
+        wd: wd1
+        site: DXCCareers
+        query: software engineer
+  - name: CGI
+    sources:
+      - type: workday
+        tenant: cgi
+        wd: wd3
+        site: CGICareers
+        query: software engineer
+  - name: EPAM
+    sources:
+      - type: greenhouse
+        slug: epam
+  - name: Globant
+    sources:
+      - type: greenhouse
+        slug: globant
+  - name: Thoughtworks
+    sources:
+      - type: greenhouse
+        slug: thoughtworks
+  - name: SoftServe
+    sources:
+      - type: greenhouse
+        slug: softserve
+  - name: Nordstrom
+    sources:
+      - type: workday
+        tenant: nordstrom
+        wd: wd1
+        site: NordstromCareers
+        query: software engineer
+  - name: Macy's
+    sources:
+      - type: workday
+        tenant: macys
+        wd: wd1
+        site: MacysCareers
+        query: software engineer
+  - name: Gap
+    sources:
+      - type: workday
+        tenant: gapinc
+        wd: wd1
+        site: GapIncCareers
+        query: software engineer
+  - name: TJX
+    sources:
+      - type: workday
+        tenant: tjx
+        wd: wd1
+        site: TJXCareers
+        query: software engineer
+  - name: Kohl's
+    sources:
+      - type: workday
+        tenant: kohls
+        wd: wd1
+        site: KohlsCareers
+        query: software engineer
+  - name: Publix
+    sources:
+      - type: workday
+        tenant: publix
+        wd: wd1
+        site: PublixCareers
+        query: software engineer
+  - name: Albertsons
+    sources:
+      - type: workday
+        tenant: albertsons
+        wd: wd1
+        site: AlbertsonsCareers
+        query: software engineer
+  - name: Kroger
+    sources:
+      - type: oracle
+        host: eluq.fa.us2.oraclecloud.com
+        site: CX_2001
+        query: software engineer
+  - name: Sysco
+    sources:
+      - type: workday
+        tenant: sysco
+        wd: wd1
+        site: SyscoCareers
+        query: software engineer
+  - name: Arrow Electronics
+    sources:
+      - type: workday
+        tenant: arrow
+        wd: wd1
+        site: ArrowCareers
+        query: software engineer
+  - name: CDW
+    sources:
+      - type: workday
+        tenant: cdw
+        wd: wd1
+        site: CDWCareers
+        query: software engineer
+  - name: Insight Enterprises
+    sources:
+      - type: workday
+        tenant: insight
+        wd: wd1
+        site: InsightCareers
+        query: software engineer
+  - name: Lam Research
+    sources:
+      - type: workday
+        tenant: lamresearch
+        wd: wd5
+        site: LamCareers
+        query: software engineer
+  - name: KLA
+    sources:
+      - type: workday
+        tenant: kla
+        wd: wd1
+        site: KLACareers
+        query: software engineer
+  - name: ASML
+    sources:
+      - type: workday
+        tenant: asml
+        wd: wd3
+        site: ASMLCareers
+        query: software engineer
+  - name: Northrop Grumman
+    sources:
+      - type: workday
+        tenant: ngc
+        wd: wd1
+        site: NGCCareers
+        query: software engineer
+  - name: General Dynamics
+    sources:
+      - type: workday
+        tenant: gd
+        wd: wd1
+        site: GDCareers
+        query: software engineer
+  - name: L3Harris
+    sources:
+      - type: workday
+        tenant: l3harris
+        wd: wd1
+        site: L3HarrisCareers
+        query: software engineer
+  - name: Leidos
+    sources:
+      - type: workday
+        tenant: leidos
+        wd: wd1
+        site: LeidosCareers
+        query: software engineer
+  - name: Booz Allen
+    sources:
+      - type: workday
+        tenant: bah
+        wd: wd1
+        site: BAHCareers
+        query: software engineer
+  - name: SAIC
+    sources:
+      - type: workday
+        tenant: saic
+        wd: wd1
+        site: SAICCareers
+        query: software engineer
+  - name: CACI
+    sources:
+      - type: workday
+        tenant: caci
+        wd: wd1
+        site: CACICareers
+        query: software engineer
+  - name: ManTech
+    sources:
+      - type: workday
+        tenant: mantech
+        wd: wd1
+        site: ManTechCareers
+        query: software engineer
+  - name: Parsons
+    sources:
+      - type: workday
+        tenant: parsons
+        wd: wd1
+        site: ParsonsCareers
+        query: software engineer
+  - name: AECOM
+    sources:
+      - type: workday
+        tenant: aecom
+        wd: wd1
+        site: AECOMCareers
+        query: software engineer
+  - name: Jacobs
+    sources:
+      - type: workday
+        tenant: jacobs
+        wd: wd1
+        site: JacobsCareers
+        query: software engineer
+  - name: Fluor
+    sources:
+      - type: workday
+        tenant: fluor
+        wd: wd1
+        site: FluorCareers
+        query: software engineer
+  - name: Emerson
+    sources:
+      - type: workday
+        tenant: emerson
+        wd: wd1
+        site: EmersonCareers
+        query: software engineer
+  - name: Rockwell Automation
+    sources:
+      - type: workday
+        tenant: rockwell
+        wd: wd1
+        site: RockwellCareers
+        query: software engineer
+  - name: Parker Hannifin
+    sources:
+      - type: workday
+        tenant: parker
+        wd: wd1
+        site: ParkerCareers
+        query: software engineer
+  - name: Eaton
+    sources:
+      - type: workday
+        tenant: eaton
+        wd: wd1
+        site: EatonCareers
+        query: software engineer
+  - name: 3M
+    sources:
+      - type: workday
+        tenant: 3m
+        wd: wd1
+        site: 3MCareers
+        query: software engineer
+  - name: DuPont
+    sources:
+      - type: workday
+        tenant: dupont
+        wd: wd1
+        site: DuPontCareers
+        query: software engineer
+  - name: Dow
+    sources:
+      - type: workday
+        tenant: dow
+        wd: wd1
+        site: DowCareers
+        query: software engineer
+  - name: Sherwin-Williams
+    sources:
+      - type: workday
+        tenant: sherwin
+        wd: wd1
+        site: SWCareers
+        query: software engineer
+  - name: Paccar
+    sources:
+      - type: workday
+        tenant: paccar
+        wd: wd1
+        site: PaccarCareers
+        query: software engineer
+  - name: Cummins
+    sources:
+      - type: workday
+        tenant: cummins
+        wd: wd1
+        site: CumminsCareers
+        query: software engineer
+  - name: PACCAR Digital
+    sources:
+      - type: greenhouse
+        slug: paccar
+  - name: Aptiv
+    sources:
+      - type: workday
+        tenant: aptiv
+        wd: wd1
+        site: AptivCareers
+        query: software engineer
+  - name: Magna
+    sources:
+      - type: workday
+        tenant: magna
+        wd: wd3
+        site: MagnaCareers
+        query: software engineer
+  - name: BorgWarner
+    sources:
+      - type: workday
+        tenant: borgwarner
+        wd: wd1
+        site: BWCareers
+        query: software engineer
+  - name: Visteon
+    sources:
+      - type: greenhouse
+        slug: visteon
+  - name: Harman
+    sources:
+      - type: workday
+        tenant: harman
+        wd: wd5
+        site: HarmanCareers
+        query: software engineer
+  - name: Garmin
+    sources:
+      - type: workday
+        tenant: garmin
+        wd: wd1
+        site: GarminCareers
+        query: software engineer
+  - name: Itron
+    sources:
+      - type: greenhouse
+        slug: itron
+  - name: Trimble
+    sources:
+      - type: workday
+        tenant: trimble
+        wd: wd1
+        site: TrimbleCareers
+        query: software engineer
+  - name: Roku
+    sources:
+      - type: greenhouse
+        slug: roku
+  - name: SiriusXM
+    sources:
+      - type: greenhouse
+        slug: siriusxm
+  - name: iHeartMedia
+    sources:
+      - type: greenhouse
+        slug: iheartmedia
+  - name: Paramount
+    sources:
+      - type: workday
+        tenant: paramount
+        wd: wd1
+        site: ParamountCareers
+        query: software engineer
+  - name: NBCUniversal
+    sources:
+      - type: workday
+        tenant: nbcuniversal
+        wd: wd1
+        site: NBCUCareers
+        query: software engineer
+  - name: Fox
+    sources:
+      - type: workday
+        tenant: fox
+        wd: wd1
+        site: FoxCareers
+        query: software engineer
+  - name: New York Times
+    sources:
+      - type: greenhouse
+        slug: thenewyorktimes
+  - name: Washington Post
+    sources:
+      - type: greenhouse
+        slug: washingtonpost
+  - name: Condé Nast
+    sources:
+      - type: greenhouse
+        slug: condenast
+  - name: Vox Media
+    sources:
+      - type: greenhouse
+        slug: voxmedia
+  - name: BuzzFeed
+    sources:
+      - type: greenhouse
+        slug: buzzfeed
+  - name: The Athletic
+    sources:
+      - type: greenhouse
+        slug: theathletic
+  - name: Glassdoor
+    sources:
+      - type: greenhouse
+        slug: glassdoor
+  - name: Indeed
+    sources:
+      - type: greenhouse
+        slug: indeed
+  - name: ZipRecruiter
+    sources:
+      - type: greenhouse
+        slug: ziprecruiter
+  - name: Handshake
+    sources:
+      - type: greenhouse
+        slug: joinhandshake
+  - name: Lever
+    sources:
+      - type: lever
+        slug: lever
+  - name: Greenhouse Software
+    sources:
+      - type: greenhouse
+        slug: greenhouse
+  - name: Ashby
+    sources:
+      - type: ashby
+        slug: ashby
+  - name: Smartsheet Labs
+    sources:
+      - type: greenhouse
+        slug: smartsheet
+  - name: Observable
+    sources:
+      - type: ashby
+        slug: observable
+  - name: Fivetran
+    sources:
+      - type: greenhouse
+        slug: fivetran
+  - name: Hightouch
+    sources:
+      - type: ashby
+        slug: hightouch
+  - name: Census
+    sources:
+      - type: ashby
+        slug: census
+  - name: Hex Technologies
+    sources:
+      - type: ashby
+        slug: hextechnologies
+  - name: Mode Analytics
+    sources:
+      - type: greenhouse
+        slug: modeanalytics
+  - name: Looker
+    sources:
+      - type: greenhouse
+        slug: looker
+  - name: Tableau
+    sources:
+      - type: workday
+        tenant: salesforce
+        wd: wd1
+        site: SalesforceCareers
+        query: software engineer
+  - name: Snowflake Extended
+    sources:
+      - type: greenhouse
+        slug: snowflakeinc
+  - name: Thoughtspot
+    sources:
+      - type: greenhouse
+        slug: thoughtspot
+  - name: Alteryx
+    sources:
+      - type: greenhouse
+        slug: alteryx
+  - name: UiPath
+    sources:
+      - type: greenhouse
+        slug: uipath
+  - name: Automation Anywhere
+    sources:
+      - type: greenhouse
+        slug: automationanywhere
+  - name: Appian
+    sources:
+      - type: greenhouse
+        slug: appian
+  - name: Pegasystems
+    sources:
+      - type: greenhouse
+        slug: pegasystems
+  - name: Cerner
+    sources:
+      - type: workday
+        tenant: oraclehealth
+        wd: wd1
+        site: OracleHealth
+        query: software engineer
+  - name: Epic Systems
+    sources:
+      - type: career_portal
+        url: https://careers.epic.com/
+  - name: Athenahealth
+    sources:
+      - type: greenhouse
+        slug: athenahealth
+  - name: Veeva
+    sources:
+      - type: greenhouse
+        slug: veeva
+  - name: Doximity
+    sources:
+      - type: greenhouse
+        slug: doximity
+  - name: Teladoc
+    sources:
+      - type: greenhouse
+        slug: teladoc
+  - name: Oscar Health
+    sources:
+      - type: greenhouse
+        slug: oscar
+  - name: Devoted Health
+    sources:
+      - type: greenhouse
+        slug: devotedhealth
+  - name: Cityblock
+    sources:
+      - type: greenhouse
+        slug: cityblock
+  - name: Tempus
+    sources:
+      - type: greenhouse
+        slug: tempus
+  - name: Flatiron Health
+    sources:
+      - type: greenhouse
+        slug: flatironhealth
+  - name: Ginkgo Bioworks
+    sources:
+      - type: greenhouse
+        slug: ginkgobioworks
+  - name: Illumina
+    sources:
+      - type: workday
+        tenant: illumina
+        wd: wd1
+        site: IlluminaCareers
+        query: software engineer
+  - name: Moderna
+    sources:
+      - type: workday
+        tenant: moderna
+        wd: wd1
+        site: ModernaCareers
+        query: software engineer
+  - name: Regeneron
+    sources:
+      - type: workday
+        tenant: regeneron
+        wd: wd1
+        site: RegeneronCareers
+        query: software engineer
+  - name: BioNTech
+    sources:
+      - type: greenhouse
+        slug: biontech
+  - name: Genentech
+    sources:
+      - type: workday
+        tenant: gene
+        wd: wd1
+        site: GeneCareers
+        query: software engineer
+  - name: Amgen
+    sources:
+      - type: workday
+        tenant: amgen
+        wd: wd1
+        site: AmgenCareers
+        query: software engineer
+  - name: Gilead
+    sources:
+      - type: workday
+        tenant: gilead
+        wd: wd1
+        site: GileadCareers
+        query: software engineer
+  - name: Biogen
+    sources:
+      - type: workday
+        tenant: biogen
+        wd: wd1
+        site: BiogenCareers
+        query: software engineer
+  - name: Vertex
+    sources:
+      - type: workday
+        tenant: vrtx
+        wd: wd1
+        site: VertexCareers
+        query: software engineer
+  - name: Boston Scientific
+    sources:
+      - type: workday
+        tenant: bsci
+        wd: wd1
+        site: BSCICareers
+        query: software engineer
+  - name: Medtronic
+    sources:
+      - type: workday
+        tenant: medtronic
+        wd: wd1
+        site: MedtronicCareers
+        query: software engineer
+  - name: Stryker
+    sources:
+      - type: workday
+        tenant: stryker
+        wd: wd1
+        site: StrykerCareers
+        query: software engineer
+  - name: Zimmer Biomet
+    sources:
+      - type: workday
+        tenant: zimmerbiomet
+        wd: wd1
+        site: ZBCareers
+        query: software engineer
+  - name: Edwards Lifesciences
+    sources:
+      - type: workday
+        tenant: edwards
+        wd: wd1
+        site: EdwardsCareers
+        query: software engineer
+  - name: Intuitive Surgical
+    sources:
+      - type: workday
+        tenant: intuitive
+        wd: wd1
+        site: IntuitiveCareers
+        query: software engineer
+  - name: Exact Sciences
+    sources:
+      - type: greenhouse
+        slug: exactsciences
+  - name: Guardant Health
+    sources:
+      - type: greenhouse
+        slug: guardanthealth
+  - name: 10x Genomics
+    sources:
+      - type: greenhouse
+        slug: 10xgenomics
+  - name: Twist Bioscience
+    sources:
+      - type: greenhouse
+        slug: twistbioscience
+  - name: Recursion
+    sources:
+      - type: greenhouse
+        slug: recursionpharmaceuticals
+  - name: Insitro
+    sources:
+      - type: greenhouse
+        slug: insitro
+  - name: Absci
+    sources:
+      - type: greenhouse
+        slug: absci
+  - name: Benchling
+    sources:
+      - type: greenhouse
+        slug: benchling
+  - name: Labcorp
+    sources:
+      - type: workday
+        tenant: labcorp
+        wd: wd1
+        site: LabcorpCareers
+        query: software engineer
+  - name: Quest Diagnostics
+    sources:
+      - type: workday
+        tenant: questdiagnostics
+        wd: wd1
+        site: QuestCareers
+        query: software engineer
+  - name: IQVIA
+    sources:
+      - type: workday
+        tenant: iqvia
+        wd: wd1
+        site: IQVIACareers
+        query: software engineer
+  - name: Syneos
+    sources:
+      - type: workday
+        tenant: syneos
+        wd: wd1
+        site: SyneosCareers
+        query: software engineer
+  - name: Charles River
+    sources:
+      - type: workday
+        tenant: crl
+        wd: wd1
+        site: CRLCareers
+        query: software engineer
+  - name: Thermo Fisher Careers
+    sources:
+      - type: workday
+        tenant: thermofisher
+        wd: wd5
+        site: ThermoFisherCareers
+        query: software engineer
+  - name: Danaher
+    sources:
+      - type: workday
+        tenant: danaher
+        wd: wd1
+        site: DanaherCareers
+        query: software engineer
+  - name: Agilent
+    sources:
+      - type: workday
+        tenant: agilent
+        wd: wd1
+        site: AgilentCareers
+        query: software engineer
+  - name: Waters
+    sources:
+      - type: workday
+        tenant: waters
+        wd: wd1
+        site: WatersCareers
+        query: software engineer
+  - name: PerkinElmer
+    sources:
+      - type: workday
+        tenant: perkinelmer
+        wd: wd1
+        site: PKICareers
+        query: software engineer
+  - name: Bio-Rad
+    sources:
+      - type: greenhouse
+        slug: biorad
+  - name: QIAGEN
+    sources:
+      - type: workday
+        tenant: qiagen
+        wd: wd3
+        site: QIAGENCareers
+        query: software engineer

@@ -143,9 +143,11 @@ def matches_posted_window(
     return min_hours <= hours <= max_hours
 
 
-SENIOR_TITLE_PATTERN = re.compile(
+# Hard-block only heavy senior/staff+. "Senior Software Engineer" is allowed when
+# JD years still fall in the configured 1–5 band (common for early-mid roles).
+STAFF_PLUS_TITLE_PATTERN = re.compile(
     r"\b("
-    r"senior|sr\.?|staff|principal|architect|distinguished|director|"
+    r"staff|principal|architect|distinguished|director|"
     r"manager|management|head of|vp|vice president|"
     r"lead engineer|tech lead|team lead|engineering lead|"
     r"software engineer iii|software engineer iv|engineer iii|engineer iv|"
@@ -154,10 +156,8 @@ SENIOR_TITLE_PATTERN = re.compile(
     re.IGNORECASE,
 )
 
-INTERN_TITLE_PATTERN = re.compile(
-    r"\b(intern|internship|co-?op)\b",
-    re.IGNORECASE,
-)
+# Backward-compatible alias used by older call sites / tests.
+SENIOR_TITLE_PATTERN = STAFF_PLUS_TITLE_PATTERN
 
 ENTRY_TITLE_PATTERN = re.compile(
     r"\b("
@@ -167,6 +167,8 @@ ENTRY_TITLE_PATTERN = re.compile(
     r")\b",
     re.IGNORECASE,
 )
+
+INTERN_TITLE_PATTERN = re.compile(r"\b(intern|internship)\b", re.IGNORECASE)
 
 MIN_YEARS_PATTERNS = (
     re.compile(r"(?:minimum|min\.?|at least|required)\s*(?:of\s*)?(\d+)\+?\s*years?", re.I),
@@ -198,23 +200,22 @@ def _minimum_years_required(text: str) -> Optional[int]:
 def matches_experience(
     job: JobPosting,
     *,
-    min_years: int = 0,
+    min_years: int = 1,
     max_years: int = 5,
     extra_text: str = "",
 ) -> bool:
-    """Keep roles targeting roughly min–max years experience; skip senior/high-min roles."""
+    """Keep roles targeting about 1–5 years; allow Senior SWE, skip staff+/interns."""
     text = _experience_text(job, extra_text)
     title = job.title or ""
 
-    # Pure internships are 0-year tracks — drop them when the floor is 1+.
-    if min_years >= 1 and INTERN_TITLE_PATTERN.search(title):
+    if INTERN_TITLE_PATTERN.search(title):
         return False
 
-    if SENIOR_TITLE_PATTERN.search(title):
+    if STAFF_PLUS_TITLE_PATTERN.search(title):
         return False
 
-    # Junior / new-grad / early-career titles fit a 1–5 year band.
     if ENTRY_TITLE_PATTERN.search(title):
+        # Junior / new-grad titles are in-band for early career even if years omitted.
         return True
 
     required_min = _minimum_years_required(text)
